@@ -1,0 +1,52 @@
+---
+import MainHead from './MainHead.astro';
+import MainFooter from './MainFooter.astro';
+import Nav from './Nav.astro';
+
+interface Props {
+    title: string; 
+    description: string;
+    thumbnail: string;
+}
+
+const {
+    title = "Guo's Portfolio",
+    description = "The digital home I always wanted",
+    thumbnail = "/images/og-img.jpg"
+} = Astro.props as Props;
+
+import '../styles/global.css';
+
+---
+
+<html lang="en">
+	<MainHead {title} {description} {thumbnail}/>
+    
+	<body>
+        <a href="#main" class="skip">Skip to main content</a>
+        <Nav/>
+        <slot>
+
+        </slot>
+        <MainFooter/>
+    
+        <script>
+            // Enable hidden nav bar
+            {
+                const nav = document.querySelector("nav");
+                let lastScrollY = window.scrollY;
+
+                window.addEventListener("scroll", () => {
+                    if (lastScrollY < window.scrollY) {
+                    nav.classList.add("nav--hidden");
+                    } else {
+                    nav.classList.remove("nav--hidden");
+                    }
+
+                    lastScrollY = window.scrollY;
+                });
+            }
+        </script>
+	</body>
+</html>
+

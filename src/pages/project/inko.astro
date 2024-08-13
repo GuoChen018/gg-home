@@ -1,0 +1,640 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+---
+
+<MainLayout title="Inko Cat" description='Inko Cat Project'>
+    <main class="inko-cat">
+        <!-- Title + hero + description -->
+        <section class="hero">
+            <h1>Building an all-in-one productivity tool from scratch</h1>
+            <ul class="tag-list">
+                <li class="tag">Productivity</li>
+                <li class="tag">0 to 1</li>
+                <li class="tag">Personal Project</li>
+                <li class="tag">Shipped</li>
+            </ul>
+            <article class="project-grid">
+                <figure class="column-12">
+                    <div class="img-mid img-border bg-ic">
+                        <img src="/images/i-c/inko-hero-1.jpg" alt="Inko Cat planner page displaying a cat image, calendar, and three lists">
+                    </div>
+                </figure>
+                <p class="column-8">Inko Cat is a productivity tool that provides you the building blocks to create your own spaces. As the founding designer, I owned all the visuals and product. It’s one of the coolest feelings to use something you designed every day.</p>
+                <ul class="project-grid quick-overview column-12">   
+                    <li class="column-3">
+                        <h6>Role</h6>
+                        <p>Product Designer</p>
+                    </li>
+                    <li class="column-3">
+                        <h6>Team</h6>
+                        <p><a href="https://x.com/shaoruu?s=20" target="_blank">Ian Huang</a>  (Engineer)</p>
+                    </li>
+                    <li class="column-3">
+                        <h6>Duration</h6>
+                        <p>2023 - Present</p>
+                    </li>
+                    <li class="column-3">
+                        <h6>Link</h6>
+                        <a href="https://inko.cat/" target="_blank">inko.cat</a>
+                        <i class="ph ph-arrow-up-right"></i>
+                    </li>
+                </ul>
+            </article>
+        </section>
+
+        <!-- Why -->
+        <section class="i-why">
+            <article class="text-banner">
+                <h5>Why this project?</h5>
+                <h2>None of the current tools help us manage tasks well and actually get stuff done</h2>
+            </article>
+            <figure>
+                <div class="img-all">
+                    <img src="/images/i-c/inko-lack-tool.jpg" alt="Gallery of different productivity tools and a message in the middle saying so many tools, but not one that really works for us" loading="lazy">
+                </div>
+            </figure>
+        </section>
+
+        <!-- What is Inko Cat -->
+        <section class="i-what-is-inko-cat">
+            <article class="text-banner">
+                <h5>What is Inko Cat?</h5>
+                <h2>So, we built Inko Cat, a tool that gives you the building blocks to create your own productivity spaces</h2>
+            </article>
+            <article class="project-grid text-d-banner">
+                <h3 class="column-6">At its core, Inko Cat is flexible and interconnected.</h3>
+                <ul class="column-6">
+                    <li class="card">
+                        <i class="ph ph-layout icon-large"></i>
+                        <p><strong>Flexible</strong> - You can add in different blocks (calendar, list, timer, etc) and customize them to your needs. </p>
+                    </li>
+                    <li class="card">
+                        <i class="ph ph-link icon-large"></i>
+                        <p><strong>Interconnected</strong> - Tasks are all synced. And you can drag them across different types of blocks.</p>  
+                    </li>
+                </ul>
+            </article>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <video class="img-all" muted autoplay loop src="../../video/inko-cat/inko-main-hero-30.mp4"></video>
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Architecture -->
+        <section class="i-architecture">
+            <div class="text-banner">
+                <h5>Architecture</h5>
+                <h2>In Inko Cat, there are blocks and spaces.</h2>
+            </div>
+            <article class="sub-section">
+                <div class="project-grid text-d-banner">
+                    <h3 class="column-6">Blocks</h3>
+                    <p class="column-6">On the base level, Inko Cat is composed of blocks. Some blocks examples are calendar, kanban board, image, and timer.</p>
+                </div>
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="/images/i-c/inko-block-hero-1.jpg" alt="Gallery of different blocks in Inko Cat: Calendar, list, board, note, journal, timer, and image" loading="lazy">
+                    </div>
+                </figure>
+            </article>
+            <article class="sub-section">
+                <div class="project-grid text-d-banner">
+                    <h3 class="column-6">Spaces</h3>
+                    <p class="column-6">But, where do you place these blocks? Answer: A space. Think of space as a page or a canvas. You can add as many blocks in a space to fit your needs.</p>
+                </div>
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="/images/i-c/inko-space-hero-1.jpg" alt="Seven blocks inside a space" loading="lazy">
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Blocks -->
+        <section class="i-blocks">
+            <h5>Key concept / Block</h5>
+            <ul class="grid text-d-banner">
+                <li class="column-6">
+                    <h2>Blocks are the building blocks (oops)</h2>
+                </li>
+                <li class="column-6">
+                    <p>You can add as many blocks into a space. We provide different blocks, and we plan to add more in the future.</p>
+                </li>
+            </ul>
+            <figure class="column-12">
+                <div class="img-all">
+                    <img src="/images/i-c/inko-block-hero-2.jpg" alt="Gallery of different blocks which includes list, calendar, timer, journal, image, board, and calendar" loading="lazy">
+                </div>
+            </figure>
+        </section>
+
+        <!-- Blocks -> Calendar  -->
+        <section class="i-blocks-calendar">
+            <h5>Block 1</h5>
+            
+            <article class="grid text-d-banner">
+                <h3 class="column-6">Calendar</h3>
+                <p class="column-6">View your tasks and events on the calendar.</p>
+            </article>
+
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="/images/i-c/inko-calendar-hero-1.jpg" alt="Calendar block" loading="lazy">
+                    </div>
+                </figure>
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="/images/i-c/inko-calendar-colors.jpg" alt="Gallery of the different colors designed for the calendar block" loading="lazy">
+                    </div>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="/images/i-c/inko-calendar-popup.jpg" alt="Selected state of a calendar task that displays a popup" loading="lazy">
+                    </div>
+                    <figcaption>Calendar task popup</figcaption>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="/images/i-c/inko-calendar-set-priority.jpg" alt="Setting priority in a calendar task popup" loading="lazy">
+                    </div>
+                    <figcaption>Set priority</figcaption>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="/images/i-c/inko-calendar-set-focus.jpg" alt="Choosing a focus in a calendar task popup" loading="lazy">
+                    </div>
+                    <figcaption>Set focus/tag</figcaption>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="/images/i-c/inko-calendar-set-time.jpg" alt="Setting a date and time of a task" loading="lazy">
+                    </div>
+                    <figcaption>Set date & time</figcaption>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Blocks -> List -->
+
+        <section class="i-blocks-list">
+            <h5>Block 2</h5>
+            <article class="grid text-d-banner">
+                <h3 class="column-6">List</h3>
+                <p class="column-6">A list view of your tasks.</p>
+            </article>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="/images/i-c/inko-list-hero.jpg" alt="List block" loading="lazy">
+                    </div>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-list-drag.jpg" alt="Drag task in an un-sorted list" loading="lazy">
+                    </div>
+                    <figcaption>Dragging task in a un-sorted list</figcaption>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-list-hover.jpg" alt="Hover over a task to view delete icon button" loading="lazy">
+                    </div>
+                    <figcaption>Hover to delete</figcaption>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Blocks -> Board -->
+
+        <section class="i-blocks-board">
+            <h5>Block 3</h5>
+            <article class="grid text-d-banner">
+                <h3 class="column-6">Board</h3>
+                <p class="column-6">Great for tracking projects.</p>
+            </article>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-board-hero.jpg" alt="Board block displaying three status columns with tasks in each: to do, in progress, and completed" loading="lazy">
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Blocks -> Notes -->
+        <section class="i-blocks-notes">
+            <h5>Block 4</h5>
+            <article class="grid text-d-banner">
+                <h3 class="column-6">Note</h3>
+                <p class="column-6">Go-to place for brain dump and quick ideas.</p>
+            </article>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-note-hero.jpg" alt="Notes block" loading="lazy">
+                    </div>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-note-tooltip.jpg" alt="Tooltip labeled 'View all notes' when user hovers over the icon" loading="lazy">
+                    </div>
+                    <figcaption>View all notes tooltip</figcaption>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-note-all-notes.jpg" alt="List of all the notes" loading="lazy">
+                    </div>
+                    <figcaption>List of all notes</figcaption>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-note-delete.jpg" alt="Selected of a more button that displays a button labeled 'Delete Note'" loading="lazy">
+                    </div>
+                    <figcaption>Delete a note</figcaption>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-note-drag.jpg" alt="Hover over a text to see the drag icon" loading="lazy">
+                    </div>
+                    <figcaption>Drag a line of text</figcaption>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Blocks -> Journal -->
+        <section class="i-blocks-journal">
+            <h5>Block 5</h5>
+            <article class="grid text-d-banner">
+                <h3 class="column-6">Journal</h3>
+                <p class="column-6">Safe space to record your day and thoughts.</p>
+            </article>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-journal-hero.jpg" alt="Journal of September 1, 2023" loading="lazy">
+                    </div>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-journal-select-date.jpg" alt="Popup to navigate different journal dates before today" loading="lazy">
+                    </div>
+                    <figcaption>Choose date entry</figcaption>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-journal-tooltip.jpg" alt="Tooltip labeled 'Go back to today' when user hovers over the icon" loading="lazy">
+                    </div>
+                    <figcaption>Go back to today</figcaption>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Blocks -> Timer -->
+        <section class="i-blocks-timer">
+            <h5>Block 6</h5>
+            <article class="grid text-d-banner">
+                <h3 class="column-6">Timer</h3>
+                <p class="column-6">A nod to the famous pomodoro technique.</p>
+            </article>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-timer-hero.jpg" alt="Gallery of timer blocks" loading="lazy">
+                    </div>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-timer-complete-task.jpg" alt="Hover state of the task checkbox on a timer block" loading="lazy">
+                    </div>
+                    <figcaption>Complete a task</figcaption>
+                </figure>
+                <figure class="column-6">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-timer-long-title.jpg" alt="Edge case of a long task title in a timer block" loading="lazy">
+                    </div>
+                    <figcaption>Edge case: Long title</figcaption>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Blocks -> Image -->
+
+        <section class="i-blocks-image">
+            <h5>Block 7</h5>
+            <article class="grid text-d-banner">
+                <h3 class="column-6">Image</h3>
+                <p class="column-6">Add in GIFs / images to decorate your spaces.</p>
+            </article>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-image-hero.jpg" alt="Image block" loading="lazy">
+                    </div>
+                </figure>
+            </article>
+        </section>
+        
+        <!-- Spaces -->
+        <section class="i-blocks">
+            <h5>Key concept / Space</h5>
+            <ul class="grid text-d-banner">
+                <li class="column-6">
+                    <h2>Spaces are where blocks live</h2>
+                </li>
+                <li class="column-6">
+                    <p>You can create different spaces to fit your needs and workflow (Daily planner, project, journal, etc)</p>
+                </li>
+            </ul>
+            <figure>
+                <div class="img-all">
+                    <video class="img-all" muted autoplay loop src="../../video/inko-cat/inko-space-hero-2.mp4"></video>
+                </div>
+            </figure>
+        </section>
+
+        <!-- Spaces -> Create a new space -->
+        <section class="i-space-create-new">
+            <article class="text-banner">
+                <h5>Space</h5>
+                <h3>Create a new space</h3>
+            </article>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <video class="img-all" muted autoplay loop src="../../video/inko-cat/inko-space-create-new.mp4"></video>
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Spaces -> Edit space icon -->
+        <section class="i-space-edit-icon">
+            <article class="text-banner">
+                <h5>Space</h5>
+                <h3>Edit space icon</h3>
+            </article>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <video class="img-all" muted autoplay loop src="../../video/inko-cat/inko-space-change-icon.mp4"></video>
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+         <!-- Spaces -> Add block -->
+         <section class="i-space-edit-icon">
+            <article class="text-banner">
+                <h5>Space</h5>
+                <h3>Add block to a space</h3>
+            </article>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <video class="img-all" muted autoplay loop src="../../video/inko-cat/inko-space-add-block.mp4"></video>
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Key feature - customization  -->
+        <section class="i-feature-customize">
+            <h5>Key Feature #1</h5>
+            <ul class="grid text-d-banner">
+                <li class="column-6">
+                    <h2>Customize your blocks</h2>
+                </li>
+                <li class="column-6">
+                    <p>You can change a block's view, filters, and sorting.</p>
+                </li>
+            </ul>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <video class="img-all" muted autoplay loop src="../../video/inko-cat/inko-feature-customize.mp4"></video>
+                    </div>
+                </figure>
+            </article>
+        </section>
+        
+        <!-- Key feature - Drag task to any block  -->
+        <section class="i-feature-drag-task">
+            <h5>Key Feature #2</h5>
+            <ul class="grid text-d-banner">
+                <li class="column-6">
+                    <h2>Drag your task to any block</h2>
+                </li>
+                <li class="column-6">
+                    <p>You can drag a task from list to calendar, calendar to board, and so on.</p>
+                </li>
+            </ul>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <video class="img-all" muted autoplay loop src="../../video/inko-cat/inko-drag-task-to-block.mp4"></video>
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Key feature - multi-select  -->
+        <section class="i-feature-multi-select">
+            <h5>Key Feature #3</h5>
+            <ul class="grid text-d-banner">
+                <li class="column-6">
+                    <h2>Multi-select and bulk edit</h2>
+                </li>
+                <li class="column-6">
+                    <p>You can press Shift or Shift + drag to multi-select and bulk edit tasks.</p>
+                </li>
+            </ul>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <video class="img-all" muted autoplay loop src="../../video/inko-cat/inko-feature-multi-select.mp4"></video>
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Key feature - google calendar  -->
+        <section class="i-feature-g-cal">
+            <h5>Key Feature #4</h5>
+            <ul class="grid text-d-banner">
+                <li class="column-6">
+                    <h2>Google Calendar integration</h2>
+                </li>
+                <li class="column-6">
+                    <p>You can view your Google Calendar events on Inko Cat to help time block your day.</p>
+                </li>
+            </ul>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <video class="img-all" muted autoplay loop src="../../video/inko-cat/inko-feature-gcal.mp4"></video>
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Key feature - repeating tasks  -->
+        <section class="i-feature-repeating-tasks">
+            <h5>Key Feature #4</h5>
+            <ul class="grid text-d-banner">
+                <li class="column-6">
+                    <h2>Repeating tasks</h2>
+                </li>
+                <li class="column-6">
+                    <p>You can add repeating tasks.</p>
+                </li>
+            </ul>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <video class="img-all" muted autoplay loop src="../../video/inko-cat/inko-feature-repeating-tasks.mp4"></video>
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Key feature - synced block  -->
+        <section class="i-feature-synced-block">
+            <h5>Key Feature #4</h5>
+            <ul class="grid text-d-banner">
+                <li class="column-6">
+                    <h2>Synced block</h2>
+                </li>
+                <li class="column-6">
+                    <p>Use synced blocks in multiple spaces. If you change one, it changes all of them.</p>
+                </li>
+            </ul>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <video class="img-all" muted autoplay loop src="../../video/inko-cat/inko-feature-synced-block.mp4"></video>
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Key feature - template block  -->
+        <section class="i-feature-template-block">
+            <h5>Key Feature #4</h5>
+            <ul class="grid text-d-banner">
+                <li class="column-6">
+                    <h2>Template block</h2>
+                </li>
+                <li class="column-6">
+                    <p>Use template blocks to quickly set up your space.</p>
+                </li>
+            </ul>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <video class="img-all" muted autoplay loop src="../../video/inko-cat/inko-feature-template-block.mp4"></video>
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Landing Page  -->
+        <section class="i-landing-page">
+            <h5>Branding/Marketing</h5>
+            <ul class="grid text-d-banner">
+                <li class="column-6">
+                    <h2>Landing Page</h2>
+                </li>
+                <li class="column-6">
+                    <p>I designed the landing page and overall visual style for Inko Cat.</p>
+                </li>
+            </ul>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-mid img-border">
+                        <img src="/images/i-c/inko-landing-page-hero.jpg" alt="Inko Cat landing page" loading="lazy">
+                    </div>
+                </figure>
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-landing-page-cards.jpg" alt="Feature cards on Inko Cat landing page that shows drag block to calendar, multi-select, and more" loading="lazy">
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Logo  -->
+        <section class="i-logo">
+            <h5>Branding/Marketing</h5>
+            <ul class="grid text-d-banner">
+                <li class="column-6">
+                    <h2>Logo</h2>
+                </li>
+                <li class="column-6">
+                    <p>The logo was created after countless iterations on Midjourney AI.</p>
+                </li>
+            </ul>
+            <article class="grid">
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-logo.jpg" alt="Inko Cat logo on top of a faded background consisting the hundreds of logo iterations" loading="lazy">
+                    </div>
+                </figure>
+                <figure class="column-12">
+                    <div class="img-all">
+                        <img src="../../images/i-c/inko-thank-you-letter.jpg" alt="Inko Cat thank you letter" loading="lazy">
+                    </div>
+                </figure>
+            </article>
+        </section>
+
+        <!-- Learnings  -->
+        <section class="i-learnings">
+            <article class="text-banner">
+                <h5>Learnings</h5>
+                <h2>One of the most satisfying moments so far and a perfect project for me to hone my skills</h2>
+            </article>
+
+            <ul class="wide-grid">
+                <li class="column-6 text-gallery-item">
+                    <i class="ph ph-megaphone icon-xlarge"></i>
+                    <article>
+                        <h3>Put it out there</h3>
+                        <p>Looking back, we should have showed people what we have as early as possible. Getting feedback early is one of the best things to do for a new product.</p>
+                    </article>
+                </li>
+                <li class="column-6 text-gallery-item">
+                    <i class="ph ph-shooting-star icon-xlarge"></i>
+                    <article>
+                        <h3>Be proud of what we’ve made</h3>
+                        <p>I admit - I’m not a great pitch person. I’m often afraid that I’m annoying people when promoting Inko Cat. But, I realized I wasn’t giving the product a chance.</p>  
+                    </article>
+                </li>
+                <li class="column-6 text-gallery-item">
+                    <i class="ph ph-boat icon-xlarge"></i>
+                    <article>
+                        <h3>Ship fast</h3>
+                        <p>In early stages, sometimes you just need to ship it. Overthinking oftentimes can kill momentum and delay the timeline.</p>
+                    </article>
+                </li>
+                <li class="column-6 text-gallery-item">
+                    <i class="ph ph-paint-brush icon-xlarge"></i>
+                    <article>
+                        <h3>Importance of craft</h3>
+                        <p>This is the first project where I really delved into the details and craft of designing. And I love it.</p>
+                    </article>
+                </li>
+            </ul>
+        </section>
+        
+        <!-- What's Next  -->
+        <section class="i-next">
+            <h5>What's Next</h5>
+            <h2>We're still figuring it out</h2>
+            <p>Right now, Ian is working at <a href="https://cursor.sh/" target="_blank">Cursor</a>, and I’m wrapping up my final semester at Tufts. So, though we don’t have a lot of time & big goals, we do intend to work on Inko Cat during nights & weekends. We also plan to apply for <a href="https://buildspace.so/" target="_blank">buildspace</a> season 5.</p>
+        </section>
+    </main>
+</MainLayout>

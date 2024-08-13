@@ -1,0 +1,40 @@
+---
+const {title, description, thumbnail} = Astro.props;
+const { frontmatter } = Astro.props;
+
+---
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
+    <link rel="preload" as="font" href="/fonts/PlusJakartaSans-Regular.ttf" type="font/ttf" crossorigin>
+    <link rel="preload" as="font" href="/fonts/PlusJakartaSans-Medium.ttf" type="font/ttf" crossorigin>
+    <link rel="preload" as="font" href="/fonts/PlusJakartaSans-Bold.ttf" type="font/ttf" crossorigin>
+    <link rel="preload" as="font" href="/fonts/PlusJakartaSans-SemiBold.ttf" type="font/ttf" crossorigin>
+
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content={title}/>
+    <meta property="og:description" content={description}/>
+    <meta property="og:image" content={`https://www.guochen.design${thumbnail}`}/>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}/>
+    <meta name="twitter:description" content={description}/>
+    <meta name="twitter:image" content={`https://www.guochen.design${thumbnail}`} />
+
+</head>
+

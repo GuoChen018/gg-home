@@ -1,0 +1,75 @@
+---
+
+---
+
+<footer>
+    <section class="footer-info">
+        <p>Designed, drawn, and hand-coded with care.</p>
+                
+    </section>
+    <section class="footer-links">
+        <a href="mailto:guoc0818@gmail.com" target="_blank">Email</a>
+        <p>/</p>
+        <a href="https://twitter.com/guo_hq" target="_blank">Twitter</a>
+        <p>/</p>
+        <a href="https://www.linkedin.com/in/guo-chen18/" target="_blank">LinkedIn</a>
+        <p>/</p>
+        <a href="https://rss.com/podcasts/notjustpixels/" target="_blank">Podcast</a>
+        <p>/</p>
+        <a href="https://guochen.substack.com/" target="_blank">Blog</a>
+    </section>
+
+</footer>
+
+<style>
+
+    @keyframes music-fly-out {
+        25% {
+            opacity: 100;
+
+        }
+        100% {
+            transform: translate(-15px, -15px);
+            opacity: 0;
+        }
+    }
+
+    footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    footer .footer-info {
+        position: relative;
+        display: flex;
+        flex-direction: horizontal;
+        align-items: center;
+        gap: 0.5rem;
+
+        p, a{
+            margin: 0;
+        }
+
+        i {
+            font-size: var(--font-size-medium);
+            color: var(--color-text-secondary);
+            position: absolute;
+            right: 100px;
+            top: -5px;
+            opacity: 0;
+            z-index: -100;
+            /* transition: transform 2s ease-in-out; */
+        }
+
+        a:hover ~ i {
+            animation: music-fly-out 1s ease-in 2;
+        }
+    }
+    footer .links {
+        display: flex;
+        flex-direction: horizontal;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+</style>
