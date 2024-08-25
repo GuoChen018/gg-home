@@ -9,7 +9,7 @@ thumbnail: /images/blog/05-new-start/thumbnail.jpg
 
 ![Light yellow background with a sunflower emoji in the middle](/images/blog/05-new-start/thumbnail.jpg)
 
-I'm starting my first full-time job next Monday. 
+I'm starting my first full-time job tomorrow. 
 
 > damn...Damn...DAMN
 > 
