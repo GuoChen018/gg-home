@@ -1,0 +1,57 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+---
+
+<MainLayout title="Playground" description='My Playground' thumbnail="/images/og-img.jpg">
+    <main class="playground">
+        <ul class="playground-grid">
+            <!-- Example items - replace with your actual prototypes -->
+            <!-- Use <video> for videos or <img> for images -->
+            <li class="playground-item">
+                <a href="/playground/portfolio">
+                    <div class="playground-media">
+                        <video class="playground-video" muted autoplay loop src="/video/inko-cat/inko-main-hero-30.mp4"></video>
+                        <div class="playground-gradient"></div>
+                        <div class="playground-info">
+                            <span class="playground-name">Portfolio</span>
+                            <span class="playground-date">2023</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <!-- Add more items here -->
+            <!-- Example with image and dark text (for light images): -->
+            <!--
+            <li class="playground-item">
+                <a href="/playground/item-name">
+                    <div class="playground-media" data-text-color="dark">
+                        <img src="/images/your-light-image.jpg" alt="Item description">
+                        <div class="playground-gradient"></div>
+                        <div class="playground-info">
+                            <span class="playground-name">Item Name</span>
+                            <span class="playground-date">Date</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            -->
+            <!-- Example with video and white text (default, for dark videos): -->
+            <!--
+            <li class="playground-item">
+                <a href="/playground/item-name">
+                    <div class="playground-media">
+                        <video class="playground-video" muted autoplay loop src="/video/video.mp4"></video>
+                        <div class="playground-gradient"></div>
+                        <div class="playground-info">
+                            <span class="playground-name">Item Name</span>
+                            <span class="playground-date">Date</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            -->
+        </ul>
+    </main>
+</MainLayout>
+

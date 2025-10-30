@@ -1,8 +1,10 @@
 import { defineConfig } from 'astro/config';
+import react from '@astrojs/react';
 import astroOGImage from "astro-og-image";
 
 // https://astro.build/config
 export default defineConfig({
+    integrations: [react()],
     markdown: {
       shikiConfig: {
         // Choose from Shiki's built-in themes (or add your own)

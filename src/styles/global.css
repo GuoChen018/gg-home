@@ -306,6 +306,12 @@ nav a:hover {
     padding-right: 10rem;
 }
 
+.playground {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 6rem;
+}
+
 .blog-post, .blog {
     max-width: 80ch;
     margin: 0 auto;
@@ -1552,4 +1558,181 @@ ul {
     }
 }
 
+/* Playground masonry grid */
+.playground-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: start;
+}
+
+.playground-item {
+    position: relative;
+    break-inside: avoid;
+}
+
+.playground-item a {
+    display: block;
+    text-decoration: none;
+    border-radius: var(--border-radius-medium);
+    overflow: hidden;
+    background-color: var(--color-background-primary);
+    border: 1px solid var(--color-border-light);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.playground-item a:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.playground-media {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-background-secondary);
+}
+
+.playground-video,
+.playground-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.playground-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+    pointer-events: none;
+}
+
+.playground-media[data-text-color="dark"] .playground-gradient {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+}
+
+.playground-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem;
+    z-index: 1;
+}
+
+.playground-name {
+    font-family: 'PlusJakartaSans', sans-serif;
+    font-size: var(--font-size-small);
+    color: #fff;
+}
+
+.playground-date {
+    font-family: 'PlusJakartaSans', sans-serif;
+    font-weight: var(--font-weight-reg);
+    font-size: var(--font-size-small);
+    color: #fff;
+}
+
+.playground-media[data-text-color="dark"] .playground-name,
+.playground-media[data-text-color="dark"] .playground-date {
+    color: var(--color-text-primary);
+}
+
+@media screen and (max-width: 1200px) {
+    .playground {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .playground-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .playground-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Playground item page content - uses blog styling */
+
+.playground-content h1,
+.playground-content h2,
+.playground-content h3,
+.playground-content h4,
+.playground-content h5,
+.playground-content h6,
+.playground-content p {
+    margin-bottom: 0;
+}
+
+.playground-content h2 {
+    margin-top: 2.5rem;
+}
+
+.playground-content h3 {
+    margin-top: 1.75rem;
+}
+
+.playground-content h4 {
+    margin-top: 1.5rem;
+    margin-bottom: -0.5rem;
+}
+
+.playground-content h5 {
+    margin-top: 1.25rem;
+}
+
+.playground-content h6 {
+    margin-top: 1rem;
+}
+
+.playground-content p {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    line-height: 185%;
+}
+
+.playground-content blockquote {
+    border-left: 4px solid var(--color-border-light);
+    padding: 0 0 0 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 1.333em;
+}
+
+.playground-content ul {
+    list-style-type: disc;
+    padding-left: 1.5em;
+}
+
+.playground-content li {
+    margin-top: 0.75em;
+    font-family: 'PlusJakartaSans', sans-serif;
+    font-weight: var(--font-weight-reg);
+    font-size: var(--font-size-medium);
+    line-height: var(--lh-xlarge);
+    color: var(--color-text-secondary);
+}
+
+.playground-content p > code,
+.playground-content li > code {
+    font-family: 'CommitMono', sans-serif;
+    font-weight: var(--font-weight-reg);
+    font-size: var(--font-size-small);
+    padding: 0.25rem 0.25rem;
+    margin: 0 0.25rem;
+    border-radius: var(--border-radius-xsmall);
+    background: var(--color-background-secondary);
+}
 
