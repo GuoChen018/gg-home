@@ -386,11 +386,11 @@ pre > code .line {
 .blog-row > a {
     line-height: var(--lh-medium);
     text-decoration: none;
-    color: var(--color-text-primary);
+    color: var(--color-text-secondary);
 }
 
 .blog-row > a:hover {
-    color: var(--color-text-primary);
+    color: var(--color-text-secondary);
 }
 
 .blog-row-link::after {
