@@ -1,0 +1,220 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import ButtonComponent from '../../components/playground/Button';
+import ButtonContent from './shadow-over-border-content.md';
+
+const name = "Shadow instead of border";
+const date = "2025";
+
+---
+
+<MainLayout title={`${name} - Playground`} description={`${name} Prototype`} thumbnail="/images/og-img.jpg">
+    <main class="playground-item-page">
+        <!-- Name -->
+        <h4>{name}</h4>
+        
+        <!-- Date -->
+        <h5>{date}</h5>
+        
+        <!-- Interactive React Prototype -->
+        <div class="playground-prototype">
+            <ButtonComponent client:load />
+        </div>
+
+        <!-- Optional: Write about how you built it (uses blog styling) -->
+        <div class="playground-content">
+            <ButtonContent />
+        </div>
+    </main>
+</MainLayout>
+
+<style>
+    .playground-item-page {
+        max-width: 80ch;
+        margin: 0 auto;
+        padding-left: 6rem;
+        padding-right: 6rem;
+        padding-bottom: 4rem;
+    }
+
+    .playground-item-page h1 {
+        margin-bottom: 0.5rem;
+    }
+
+    .playground-item-page h5 {
+        margin-bottom: 2rem;
+    }
+
+    .playground-prototype {
+        width: 100%;
+        margin-bottom: 3rem;
+        background-color: var(--color-background-primary);
+        display: flex;
+        justify-content: center;
+    }
+
+    .playground-content {
+        /* Uses blog-post styling for markdown content */
+    }
+
+    .playground-content :global(h1),
+    .playground-content :global(h2),
+    .playground-content :global(h3),
+    .playground-content :global(h4),
+    .playground-content :global(h5),
+    .playground-content :global(h6),
+    .playground-content :global(p) {
+        margin-bottom: 0;
+    }
+
+    .playground-content :global(h2) {
+        margin-top: 2.5rem;
+    }
+
+    .playground-content :global(h3) {
+        margin-top: 1.75rem;
+    }
+
+    .playground-content :global(h4) {
+        margin-top: 1.5rem;
+        margin-bottom: -0.5rem;
+    }
+
+    .playground-content :global(h5) {
+        margin-top: 1.25rem;
+    }
+
+    .playground-content :global(h6) {
+        margin-top: 1rem;
+    }
+
+    .playground-content :global(p) {
+        margin-top: 1rem;
+        margin-bottom: 0;
+        line-height: 185%;
+    }
+
+    .playground-content :global(blockquote) {
+        border-left: 4px solid var(--color-border-light);
+        padding: 0 0 0 1.25rem;
+        margin: 1.5rem 0;
+        font-size: 1.333em;
+    }
+
+    .playground-content :global(ul) {
+        list-style-type: disc;
+        padding-left: 1.5em;
+    }
+
+    .playground-content :global(li) {
+        margin-top: 0.75em;
+        font-family: 'PlusJakartaSans', sans-serif;
+        font-weight: var(--font-weight-reg);
+        font-size: var(--font-size-medium);
+        line-height: var(--lh-xlarge);
+        color: var(--color-text-secondary);
+    }
+
+    .playground-content :global(p > code),
+    .playground-content :global(li > code) {
+        font-family: 'CommitMono', sans-serif;
+        font-weight: var(--font-weight-reg);
+        font-size: var(--font-size-small);
+        padding: 0.25rem 0.25rem;
+        margin: 0 0.25rem;
+        border-radius: var(--border-radius-xsmall);
+        background: var(--color-background-secondary);
+    }
+
+    @media screen and (max-width: 1200px) {
+        .playground-item-page {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+
+    :global(.playground-container) {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        border-radius: var(--border-radius-medium);
+        overflow: hidden;
+    }
+
+    :global(.button-side) {
+        flex: 1 1 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem;
+        min-width: 0; /* Prevents flex items from overflowing */
+    }
+
+    :global(.button-side-light) {
+        background-color: #f9f9f9;
+    }
+
+    :global(.button-side-dark) {
+        background-color: #2C2C2C;
+    }
+
+    :global(.button-square) {
+        width: 200px;
+        height: 100px;
+        border-radius: var(--border-radius-medium);
+        transition: transform 0.15s ease-out, box-shadow 0.2s ease-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'PlusJakartaSans', sans-serif;
+        font-size: var(--font-size-medium);
+        cursor: pointer;
+    }
+
+    :global(.button-square-light) {
+        background-color: #fff;
+        color: #646464;
+        box-shadow: 
+            0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+            0px 1px 2px -1px rgba(0, 0, 0, 0.06),
+            0px 2px 4px 0px rgba(0, 0, 0, 0.04)
+        ;
+    }
+
+    :global(.button-square-dark) {
+        background-color: #3A3A3A;
+        color: #B5B5B5;
+        box-shadow: 
+            inset 0px 0px 0px 1px rgba(255, 255, 255, 0.06),
+            0px 0px 0px 1px rgba(0, 0, 0, 0.1),
+            0px 1px 2px -1px rgba(0, 0, 0, 0.06),
+            0px 2px 4px 0px rgba(0, 0, 0, 0.04)
+        ;
+    }
+
+    :global(.button-square:hover) {
+        transform: scale(1.01);
+    }
+
+    :global(.button-square-light:hover) {
+        box-shadow: 
+            0px 0px 0px 1px rgba(0, 0, 0, 0.08),
+            0px 1px 2px -1px rgba(0, 0, 0, 0.08),
+            0px 2px 4px 0px rgba(0, 0, 0, 0.06)
+        ;
+    }
+
+    :global(.button-square-dark:hover) {
+        box-shadow: 
+            inset 0px 0px 0px 1px rgba(255, 255, 255, 0.08),
+            0px 0px 0px 1px rgba(0, 0, 0, 0.08),
+            0px 1px 2px -1px rgba(0, 0, 0, 0.08),
+            0px 2px 4px 0px rgba(0, 0, 0, 0.06)
+        ;
+    }
+
+    :global(.button-square:active) {
+        transform: scale(0.98);
+    }
+</style>
+

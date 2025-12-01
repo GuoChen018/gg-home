@@ -26,7 +26,13 @@ svgItems.forEach(item => {
 
   item.addEventListener('mouseleave', () => {
     tooltip.classList.remove('show');
-    tooltip.remove();
-
+    // Clear animation to prevent conflicts with transition
+    tooltip.style.animation = 'none';
+    // Wait for transition to complete before removing element
+    setTimeout(() => {
+      if (!tooltip.classList.contains('show')) {
+        tooltip.remove();
+      }
+    }, 150); // Match the transition duration (0.15s = 150ms)
   });
 });

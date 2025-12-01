@@ -94,6 +94,8 @@
     font-display: swap;
 }
 
+/* JetBrains Mono is loaded via Google Fonts in MainHead.astro */
+
 nav, footer{
     padding-left: 3rem;
     padding-right: 3rem;
@@ -310,6 +312,7 @@ nav a:hover {
     padding-left: 2rem;
     padding-right: 2rem;
     padding-bottom: 6rem;
+    height: calc(100vh - 200px);
 }
 
 .blog-post, .blog {
@@ -324,15 +327,18 @@ nav a:hover {
 pre {
     margin-top: 1rem;
     margin-bottom: 1rem;
-	padding: 1.5rem;
+	padding: 1rem 1.25rem;
 	border-radius: var(--border-radius-medium);
-    font-family: 'CommitMono', sans-serif;
+    font-family: 'JetBrains Mono', 'CommitMono', monospace;
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-small);
-    line-height: var(--lh-medium);
+    line-height: var(--lh-large);
     background-color: #fff;
-    border: 1px solid var(--color-border-light);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 
+        0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+        0px 1px 2px -1px rgba(0, 0, 0, 0.06),
+        0px 2px 4px 0px rgba(0, 0, 0, 0.04)
+    ;
     overflow-x: auto;
 }
 
@@ -742,18 +748,18 @@ svg {
     border-radius: var(--border-radius-medium);
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s, opacity 0.3s;
+    transform: scale(0.8);
+    transform-origin: 50% 100%;
+    transition: opacity 0.1s ease-out, transform 0.15s ease-out, visibility 0s linear 0.1s;
     display: flex;
     width: 240px; 
     align-items: center;
     box-shadow: 2px 4px 10px rgba(89, 89, 89, 0.1);
-    
-    animation: scale-up-bottom 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
  @keyframes scale-up-bottom {
     0% {
-      transform: scale(0.5);
+      transform: scale(0.8);
       transform-origin: 50% 100%;
     }
     100% {
@@ -777,7 +783,15 @@ svg {
   
 .tooltip.show {
     visibility: visible;
-    opacity: 1; 
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: 50% 100%;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0s linear 0s;
+    animation: scale-up-bottom 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards;
+}
+
+.tooltip:not(.show) {
+    animation: none !important;
 }
 
 
@@ -897,7 +911,7 @@ h6 {
 }
 
 figcaption {
-    font-family: 'CommitMono', sans-serif;
+    font-family: 'JetBrains Mono', 'CommitMono', monospace;
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-small);
     line-height: var(--lh-xlarge);
@@ -1024,7 +1038,7 @@ ul {
     }
     
     p > code, li > code {
-        font-family: 'CommitMono', sans-serif;
+        font-family: 'JetBrains Mono', 'CommitMono', monospace;
         font-weight: var(--font-weight-reg);
         font-size: var(--font-size-small);
         padding: 0.25rem 0.25rem;
@@ -1221,9 +1235,6 @@ ul {
     margin-block-start: 2rem;
 }
 
-.inko-cat figure {
-    /* margin-block-end: 2rem; */
-}
 
 .text-banner-img {
     display: flex;
@@ -1580,20 +1591,25 @@ ul {
     border-radius: var(--border-radius-medium);
     overflow: hidden;
     background-color: var(--color-background-primary);
-    border: 1px solid var(--color-border-light);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 
+    0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.06),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.04);    
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
 .playground-item a:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: scale(1.01);
+    box-shadow: 
+    0px 0px 0px 1px rgba(0, 0, 0, 0.08),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.08),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.06); 
 }
 
 .playground-media {
     width: 100%;
     position: relative;
     overflow: hidden;
-    background-color: var(--color-background-secondary);
 }
 
 .playground-video,
@@ -1604,47 +1620,23 @@ ul {
     object-fit: cover;
 }
 
-.playground-gradient {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
-    pointer-events: none;
-}
-
-.playground-media[data-text-color="dark"] .playground-gradient {
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
-}
-
 .playground-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1rem;
-    z-index: 1;
 }
 
 .playground-name {
     font-family: 'PlusJakartaSans', sans-serif;
     font-size: var(--font-size-small);
-    color: #fff;
+    color: var(--color-text-primary);
 }
 
 .playground-date {
     font-family: 'PlusJakartaSans', sans-serif;
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-small);
-    color: #fff;
-}
-
-.playground-media[data-text-color="dark"] .playground-name,
-.playground-media[data-text-color="dark"] .playground-date {
     color: var(--color-text-primary);
 }
 
@@ -1727,7 +1719,7 @@ ul {
 
 .playground-content p > code,
 .playground-content li > code {
-    font-family: 'CommitMono', sans-serif;
+    font-family: 'JetBrains Mono', 'CommitMono', monospace;
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-small);
     padding: 0.25rem 0.25rem;
