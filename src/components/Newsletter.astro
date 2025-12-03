@@ -1,0 +1,352 @@
+---
+---
+
+<section class="subscribe">
+    <h4>Newsletter</h4>
+    <p>
+        I share new posts, designs, and cool inspirations.
+    </p>
+    <div class="loops-newsletter-container">
+        <div class="newsletter-form-container">
+            <form class="newsletter-form" action="https://app.loops.so/api/newsletter-form/cmionvjj200g21j0i4l8iuhdx" method="POST">
+                <input class="newsletter-form-input" placeholder="you@example.com" required type="email" name="newsletter-form-input">
+                <button type="submit" class="newsletter-form-button">
+                    <span class="button-text" style="opacity: 1;">Subscribe</span>
+                    <span class="button-loading" style="display: none; opacity: 0;">
+                        <svg class="spinner" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="2" stroke-opacity="0.25"/>
+                            <path d="M 8 1 A 7 7 0 0 1 15 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    <span class="button-check" style="display: none; opacity: 0;">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8 L6 11 L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </button>
+            </form>
+            <div class="newsletter-error" style="display: none;">
+                <p class="newsletter-error-message">Oops! Something went wrong, please try again</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function submitHandler(event) {
+        event.preventDefault();
+        var container = event.target.parentNode;
+        var form = container.querySelector(".newsletter-form");
+        var formInput = container.querySelector(".newsletter-form-input");
+        var errorContainer = container.querySelector(".newsletter-error");
+        var errorMessage = container.querySelector(".newsletter-error-message");
+        var submitButton = container.querySelector(".newsletter-form-button");
+        var buttonText = submitButton.querySelector(".button-text");
+        var buttonLoading = submitButton.querySelector(".button-loading");
+        var buttonCheck = submitButton.querySelector(".button-check");
+        
+        const showLoading = () => {
+            buttonText.style.opacity = "0";
+            setTimeout(() => {
+                buttonText.style.display = "none";
+                buttonLoading.style.display = "inline-flex";
+                buttonLoading.style.opacity = "0";
+                requestAnimationFrame(() => {
+                    buttonLoading.style.opacity = "1";
+                });
+            }, 150);
+            buttonCheck.style.opacity = "0";
+            setTimeout(() => {
+                buttonCheck.style.display = "none";
+            }, 150);
+            submitButton.disabled = true;
+        };
+        
+        const showSuccess = () => {
+            buttonLoading.style.opacity = "0";
+            setTimeout(() => {
+                buttonLoading.style.display = "none";
+                buttonCheck.style.display = "inline-flex";
+                buttonCheck.style.opacity = "0";
+                requestAnimationFrame(() => {
+                    buttonCheck.style.opacity = "1";
+                });
+            }, 150);
+            submitButton.disabled = true;
+            form.reset();
+            // After 2 seconds, reset to original state
+            setTimeout(() => {
+                buttonCheck.style.opacity = "0";
+                setTimeout(() => {
+                    buttonCheck.style.display = "none";
+                    buttonText.style.display = "inline";
+                    buttonText.style.opacity = "0";
+                    requestAnimationFrame(() => {
+                        buttonText.style.opacity = "1";
+                    });
+                }, 150);
+                submitButton.disabled = false;
+            }, 2000);
+        };
+        
+        const showError = (message) => {
+            buttonLoading.style.opacity = "0";
+            buttonCheck.style.opacity = "0";
+            setTimeout(() => {
+                buttonLoading.style.display = "none";
+                buttonCheck.style.display = "none";
+                buttonText.style.display = "inline";
+                buttonText.style.opacity = "0";
+                requestAnimationFrame(() => {
+                    buttonText.style.opacity = "1";
+                });
+            }, 150);
+            submitButton.disabled = false;
+            errorContainer.style.display = "flex";
+            errorMessage.innerText = message;
+        };
+        
+        const rateLimit = () => {
+            showError("Too many signups, please try again in a little while");
+        };
+        
+        // Compare current time with time of previous sign up
+        var time = new Date();
+        var timestamp = time.valueOf();
+        var previousTimestamp = localStorage.getItem("loops-form-timestamp");
+        // If last sign up was less than a minute ago
+        // display error
+        if (previousTimestamp && Number(previousTimestamp) + 60000 > timestamp) {
+            rateLimit();
+            return;
+        }
+        localStorage.setItem("loops-form-timestamp", String(timestamp));
+        
+        // Hide any previous error
+        errorContainer.style.display = "none";
+        
+        showLoading();
+        
+        var formBody = "userGroup=&mailingLists=&email=" + encodeURIComponent(formInput.value);
+        fetch(event.target.action, {
+            method: "POST",
+            body: formBody,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+        })
+            .then(async (res) => {
+                const ok = res.ok;
+                if (ok) {
+                    // If response successful
+                    // show checkmark
+                    showSuccess();
+                } else {
+                    // If response unsuccessful
+                    // display error message or response status
+                    try {
+                        const data = await res.json();
+                        showError(data.message ? data.message : res.statusText);
+                    } catch {
+                        showError(res.statusText);
+                    }
+                }
+            })
+            .catch(error => {
+                // check for cloudflare error
+                if (error.message === "Failed to fetch") {
+                    rateLimit();
+                    return;
+                }
+                // If error caught
+                // display error message if available
+                showError(error.message || "Oops! Something went wrong, please try again");
+                localStorage.setItem("loops-form-timestamp", '');
+            });
+    }
+    
+    var formContainers = document.getElementsByClassName("newsletter-form-container");
+    for (var i = 0; i < formContainers.length; i++) {
+        var formContainer = formContainers[i]
+        var handlersAdded = formContainer.classList.contains('newsletter-handlers-added')
+        if (handlersAdded) continue;
+        formContainer.querySelector(".newsletter-form").addEventListener("submit", submitHandler);
+        formContainer.classList.add("newsletter-handlers-added");
+    }
+</script>
+
+<style is:global>
+    .subscribe {
+        padding: 1.6rem 2rem 2rem 2rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        box-shadow: 
+            0px 0px 0px 1px rgba(0, 0, 0, 0.06),
+            0px 1px 2px -1px rgba(0, 0, 0, 0.06),
+            0px 2px 4px 0px rgba(0, 0, 0, 0.04)
+        ;
+        border-radius: var(--border-radius-medium);
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .subscribe h4 {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .subscribe p {
+        margin-top: 0.5rem !important;
+        margin-bottom: 0 !important;
+    }
+
+    @media screen and (max-width: 600px) {
+        .subscribe {
+            padding: 1.6rem 1.5rem 2rem 1.5rem;
+        }
+    }
+
+    .loops-newsletter-container {
+        margin-top: 1rem;
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .newsletter-form-container {
+        margin: 0;
+        padding: 0;
+    }
+
+    .newsletter-form {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    @media screen and (max-width: 600px) {
+        .newsletter-form {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .newsletter-form-input {
+            margin: 0;
+            width: 100%;
+            margin-right: 0px;
+        }
+
+        .newsletter-form-button {
+            width: 100% !important;
+            max-width: none !important;
+        }
+    }
+
+    .newsletter-form-input {
+        font-family: 'PlusJakartaSans', sans-serif;
+        color: rgb(0, 0, 0);
+        font-size: 16px;
+        margin: 0;
+        width: 100%;
+        min-width: 100px;
+        background: rgb(250, 250, 250);
+        border: 1px solid rgb(209, 213, 219);
+        box-sizing: border-box;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px;
+        border-radius: var(--border-radius-medium);
+        padding: 0.5rem 1rem 0.6rem 1rem;
+        outline: none;
+        transition: border-color 0.2s ease-out, background-color 0.2s ease-out;
+    }
+
+    .newsletter-form {
+        gap: 10px;
+    }
+
+    .newsletter-form-input:focus {
+        border-color: rgb(180, 185, 190);
+        background: white;
+    }
+
+    .newsletter-form-button {
+        background: rgb(31, 31, 31);
+        font-size: 16px;
+        color: rgb(255, 255, 255);
+        font-family: 'PlusJakartaSans', sans-serif;
+        display: flex;
+        min-width: 120px;
+        width: min-content;
+        max-width: 300px;
+        white-space: nowrap;
+        height: 38px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        padding: 0.5rem 1rem 0.6rem 1rem;
+        border-radius: var(--border-radius-medium);
+        text-align: center;
+        font-style: normal;
+        line-height: 20px;
+        border: none;
+        cursor: pointer;
+        transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        gap: 0.5rem;
+        position: relative;
+    }
+
+    .newsletter-form-button:disabled {
+        cursor: not-allowed;
+        opacity: 0.8;
+    }
+
+    .newsletter-form-button:active {
+        transform: scale(0.98);
+    }
+
+    .newsletter-form-button .button-text,
+    .newsletter-form-button .button-loading,
+    .newsletter-form-button .button-check {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s ease-in-out;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .newsletter-form-button .button-loading svg {
+        display: block;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .newsletter-error {
+        display: none;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        margin-top: 0.75rem;
+    }
+
+    .newsletter-error-message {
+        font-family: 'PlusJakartaSans', sans-serif;
+        color: rgb(185, 28, 28);
+        font-size: 14px;
+        margin: 0;
+    }
+</style>
+
