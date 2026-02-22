@@ -251,7 +251,62 @@ figure video {
 
 .bg-dd {
     background-color: var(--color-background-primary);
-    background-image: linear-gradient(223.45deg, rgba(184,47,255,0.25) -6.71%, rgba(167,51,250,0.25) 12.07%, rgba(78,70,223,0.25) 113.23%);
+    background-image: linear-gradient(223.45deg, rgba(184,47,255,0.12) -6.71%, rgba(167,51,250,0.12) 12.07%, rgba(78,70,223,0.12) 113.23%);
+}
+
+.bg-oak {
+    background-image: url('/images/oak/oak-hero-bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.oak-hero {
+    padding: clamp(1.5rem, 2.5vw + 1rem, 4rem);
+    border-radius: var(--border-radius-medium);
+    border: 1px solid var(--color-border-light);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.oak-hero video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--border-radius-small);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    outline: none;
+}
+
+.oak-grid-video {
+    border-radius: var(--border-radius-medium);
+    border: 1px solid var(--color-border-light);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+}
+
+.oak-grid-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: none !important;
+}
+
+.oak-grid-video-wide {
+    border-radius: var(--border-radius-medium);
+    border: 1px solid var(--color-border-light);
+    overflow: hidden;
+    aspect-ratio: 2 / 1;
+}
+
+.oak-grid-video-wide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: none !important;
     
 }
 
@@ -811,7 +866,7 @@ svg {
     object-fit: cover;
     z-index: 1;
     margin: 0;
-    border-radius: var(--border-radius-small);
+    border-radius: var(--border-radius-xsmall);
 }
 
 .skeleton {
@@ -822,7 +877,7 @@ svg {
     top: 0;
     left: 0;
     z-index: -1;
-    border-radius: var(--border-radius-small);
+    border-radius: var(--border-radius-xsmall);
     animation: loading-skeleton 1s linear 3 alternate;
 }
 
