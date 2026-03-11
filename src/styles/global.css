@@ -1637,7 +1637,7 @@ ul {
 .playground-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 0.5rem;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -1649,46 +1649,37 @@ ul {
     break-inside: avoid;
 }
 
-.playground-item a {
-    display: block;
+.playground-card {
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     border-radius: var(--border-radius-medium);
     overflow: hidden;
     background-color: var(--color-background-primary);
-    box-shadow: 
+    padding: 0.25rem;
+    box-shadow:
     0px 0px 0px 1px rgba(0, 0, 0, 0.06),
     0px 1px 2px -1px rgba(0, 0, 0, 0.06),
-    0px 2px 4px 0px rgba(0, 0, 0, 0.04);    
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s ease-out;
 }
 
-.playground-item a:hover {
-    transform: scale(1.01);
-    box-shadow: 
+.playground-card-linked {
+    cursor: pointer;
+}
+
+.playground-card-linked:hover {
+    box-shadow:
     0px 0px 0px 1px rgba(0, 0, 0, 0.08),
     0px 1px 2px -1px rgba(0, 0, 0, 0.08),
-    0px 2px 4px 0px rgba(0, 0, 0, 0.06); 
-}
-
-.playground-media {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-.playground-video,
-.playground-media img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
+    0px 2px 4px 0px rgba(0, 0, 0, 0.06);
 }
 
 .playground-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1rem;
+    padding: 0.5rem 0.5rem;
 }
 
 .playground-name {
@@ -1701,7 +1692,36 @@ ul {
     font-family: 'PlusJakartaSans', sans-serif;
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-small);
+    color: var(--color-text-secondary);
+}
+
+.playground-media {
+    position: relative;
+    overflow: hidden;
+    border-radius: calc(var(--border-radius-medium) - 0.25rem);
+}
+
+.playground-video,
+.playground-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.playground-view {
+    display: block;
+    margin-top: 0.25rem;
+    padding: 0.625rem 0;
+    margin-bottom: 0;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'PlusJakartaSans', sans-serif;
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-reg);
     color: var(--color-text-primary);
+    background-color: var(--color-background-secondary);
+    border-radius: calc(var(--border-radius-medium) - 0.25rem);
 }
 
 @media screen and (max-width: 1200px) {
@@ -1709,13 +1729,15 @@ ul {
         padding-left: 1rem;
         padding-right: 1rem;
     }
+}
 
+@media screen and (max-width: 800px) {
     .playground-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 540px) {
     .playground-grid {
         grid-template-columns: 1fr;
     }

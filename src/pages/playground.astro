@@ -6,49 +6,40 @@ import MainLayout from '../layouts/MainLayout.astro';
 <MainLayout title="Playground" description='My Playground' thumbnail="/images/og-img.jpg">
     <main class="playground">
         <ul class="playground-grid">
-            <!-- Example items - replace with your actual prototypes -->
-            <!-- Use <video> for videos or <img> for images -->
             <li class="playground-item">
-                <a href="/playground/shadow-over-border">
+                <div class="playground-card">
+                    <div class="playground-info">
+                        <span class="playground-name">Oak Button States</span>
+                        <span class="playground-date">2026</span>
+                    </div>
+                    <div class="playground-media">
+                        <video class="playground-video" muted autoplay loop playsinline src="/video/oak-button-states.mp4"></video>
+                    </div>
+                </div>
+            </li>
+            <li class="playground-item">
+                <div class="playground-card playground-card-linked">
+                    <div class="playground-info">
+                        <span class="playground-name">Shadow instead of border</span>
+                        <span class="playground-date">2025</span>
+                    </div>
                     <div class="playground-media">
                         <img src="/images/playground/button.png" alt="Shadow instead of border prototype">
-                        <div class="playground-info">
-                            <span class="playground-name">Shadow instead of border</span>
-                            <span class="playground-date">2025</span>
-                        </div>
                     </div>
-                </a>
+                    <a href="/playground/shadow-over-border" class="playground-view">View</a>
+                </div>
             </li>
-            <!-- Add more items here -->
-            <!-- Example with image and dark text (for light images): -->
-            <!--
-            <li class="playground-item">
-                <a href="/playground/item-name">
-                    <div class="playground-media">
-                        <img src="/images/your-image.jpg" alt="Item description">
-                        <div class="playground-info">
-                            <span class="playground-name">Item Name</span>
-                            <span class="playground-date">Date</span>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            -->
-            <!-- Example with video: -->
-            <!--
-            <li class="playground-item">
-                <a href="/playground/item-name">
-                    <div class="playground-media">
-                        <video class="playground-video" muted autoplay loop src="/video/video.mp4"></video>
-                        <div class="playground-info">
-                            <span class="playground-name">Item Name</span>
-                            <span class="playground-date">Date</span>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            -->
         </ul>
     </main>
 </MainLayout>
+
+<script>
+    document.querySelectorAll('.playground-card-linked').forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('a')) return;
+            const link = card.querySelector('.playground-view');
+            if (link) link.click();
+        });
+    });
+</script>
 
