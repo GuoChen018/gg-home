@@ -1635,18 +1635,17 @@ ul {
 
 /* Playground masonry grid */
 .playground-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
+    columns: 3;
+    column-gap: 0.5rem;
     list-style: none;
     padding: 0;
     margin: 0;
-    align-items: start;
 }
 
 .playground-item {
     position: relative;
     break-inside: avoid;
+    margin-bottom: 0.5rem;
 }
 
 .playground-card {
@@ -1679,7 +1678,7 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem 0.5rem 0.625rem;
 }
 
 .playground-name {
@@ -1698,7 +1697,6 @@ ul {
 .playground-media {
     position: relative;
     overflow: hidden;
-    border-radius: calc(var(--border-radius-medium) - 0.25rem);
 }
 
 .playground-video,
@@ -1707,6 +1705,10 @@ ul {
     height: auto;
     display: block;
     object-fit: cover;
+    border: none;
+    border-radius: 6px;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
 }
 
 .playground-view {
@@ -1721,7 +1723,7 @@ ul {
     font-weight: var(--font-weight-reg);
     color: var(--color-text-primary);
     background-color: var(--color-background-secondary);
-    border-radius: calc(var(--border-radius-medium) - 0.25rem);
+    border-radius: calc(var(--border-radius-medium) * 0.6);
 }
 
 @media screen and (max-width: 1200px) {
@@ -1733,13 +1735,13 @@ ul {
 
 @media screen and (max-width: 800px) {
     .playground-grid {
-        grid-template-columns: repeat(2, 1fr);
+        columns: 2;
     }
 }
 
 @media screen and (max-width: 540px) {
     .playground-grid {
-        grid-template-columns: 1fr;
+        columns: 1;
     }
 }
 
