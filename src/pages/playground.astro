@@ -54,7 +54,7 @@ import MainLayout from '../layouts/MainLayout.astro';
             <li class="playground-item">
                 <div class="playground-card">
                     <div class="playground-info">
-                        <span class="playground-name">Blender Workflow</span>
+                        <span class="playground-name">AI for complex tools</span>
                         <span class="playground-date">2026</span>
                     </div>
                     <div class="playground-media">
@@ -81,8 +81,8 @@ import MainLayout from '../layouts/MainLayout.astro';
 <script>
     document.querySelectorAll('.playground-card-linked').forEach(card => {
         card.addEventListener('click', (e) => {
-            if (e.target.closest('a')) return;
-            const link = card.querySelector('.playground-view');
+            if ((e.target as HTMLElement).closest('a')) return;
+            const link = card.querySelector('.playground-view') as HTMLElement | null;
             if (link) link.click();
         });
     });
