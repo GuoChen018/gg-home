@@ -1733,6 +1733,23 @@ ul {
 }
 
 
+.playground-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: 'PlusJakartaSans', sans-serif;
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-reg);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: color 0.15s ease;
+}
+
+.playground-back:hover {
+    color: var(--color-text-primary);
+}
+
 /* Playground item page content - uses blog styling */
 
 .playground-content h1,
