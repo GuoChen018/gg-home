@@ -913,6 +913,10 @@ svg {
     margin-block-end: 3rem;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: pretty;
+}
+
 h1 {
     font-family: 'PlusJakartaSans', sans-serif;
     font-weight: var(--font-weight-semibold);
