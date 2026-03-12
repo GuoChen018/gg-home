@@ -1,0 +1,122 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import InsetInputComponent from '../../components/playground/InsetInput';
+import Newsletter from '../../components/Newsletter.astro';
+
+const name = "Inset Input";
+const date = "2026";
+
+---
+
+<MainLayout title={`${name} - Playground`} description={`${name} Prototype`} thumbnail="/images/og-img.jpg">
+    <main class="playground-item-page">
+        <h4>{name}</h4>
+        <h5>{date}</h5>
+        
+        <div class="playground-prototype">
+            <InsetInputComponent client:load />
+        </div>
+
+    </main>
+</MainLayout>
+
+<style>
+    .playground-item-page {
+        max-width: 80ch;
+        margin: 0 auto;
+        padding-left: 6rem;
+        padding-right: 6rem;
+        padding-bottom: 4rem;
+        min-height: calc(100vh - 200px);
+    }
+
+    .playground-item-page h1 {
+        margin-bottom: 0.5rem;
+    }
+
+    .playground-item-page h5 {
+        margin-bottom: 2rem;
+    }
+
+    .playground-prototype {
+        width: 100%;
+        margin-bottom: 3rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    @media screen and (max-width: 1200px) {
+        .playground-item-page {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+
+    :global(.inset-input-container) {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        border-radius: var(--border-radius-medium);
+        overflow: hidden;
+    }
+
+    :global(.inset-input-dark),
+    :global(.inset-input-light) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem 3rem;
+    }
+
+    :global(.inset-input-light) {
+        background-color: #f5f5f5;
+    }
+
+    :global(.inset-input-dark) {
+        background-color: #000;
+    }
+
+    :global(.inset-input-pill) {
+        width: 100%;
+        max-width: 320px;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        transition: box-shadow 0.2s ease-out;
+        border-radius: 14px;
+    }
+
+    :global(.inset-input-pill-light) {
+        background: linear-gradient(180deg, #FFFFFF 0%, #FBFBFB 50%, #FFFFFF 100%);
+        color: #747372;
+        border-radius: 14px;
+        box-shadow:
+            0px 4px 16px 0px rgba(0, 0, 0, 0.05),
+            0px 0px 0px 1px rgba(18, 18, 18, 0.05);
+    }
+
+    :global(.inset-input-pill-dark) {
+        background: linear-gradient(180deg, #242424 0%, #1E1E1E 51%, #242424 100%);
+        color: #A0A0A0;
+        box-shadow:
+            inset 0px 1px 0px 0px rgba(255, 255, 255, 0.05),
+            inset 0px 0px 0px 1px rgba(227, 227, 227, 0.01),
+            0px -4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    :global(.inset-input-label) {
+        font-family: 'PlusJakartaSans', sans-serif;
+        font-size: var(--font-size-medium);
+        font-weight: var(--font-weight-reg);
+        color: inherit;
+        user-select: none;
+    }
+
+    :global(.inset-input-icon) {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+    }
+</style>

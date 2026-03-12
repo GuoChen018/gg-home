@@ -371,7 +371,7 @@ nav a:hover {
     padding-left: 2rem;
     padding-right: 2rem;
     padding-bottom: 6rem;
-    height: calc(100vh - 200px);
+    min-height: calc(100vh - 200px);
 }
 
 .blog-post, .blog {
@@ -1635,17 +1635,16 @@ ul {
 
 /* Playground masonry grid */
 .playground-grid {
-    columns: 3;
-    column-gap: 0.5rem;
+    position: relative;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .playground-item {
-    position: relative;
-    break-inside: avoid;
-    margin-bottom: 0.5rem;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .playground-card {
@@ -1733,17 +1732,6 @@ ul {
     }
 }
 
-@media screen and (max-width: 800px) {
-    .playground-grid {
-        columns: 2;
-    }
-}
-
-@media screen and (max-width: 540px) {
-    .playground-grid {
-        columns: 1;
-    }
-}
 
 /* Playground item page content - uses blog styling */
 
