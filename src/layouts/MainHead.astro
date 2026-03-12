@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 const {title, description, thumbnail} = Astro.props;
 const { frontmatter } = Astro.props;
 
@@ -39,5 +40,6 @@ const { frontmatter } = Astro.props;
     <meta name="twitter:description" content={description}/>
     <meta name="twitter:image" content={`https://www.guochen.design${thumbnail}`} />
 
+    <ViewTransitions />
 </head>
 

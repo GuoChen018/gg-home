@@ -1696,6 +1696,8 @@ ul {
 .playground-media {
     position: relative;
     overflow: hidden;
+    background-color: var(--color-background-secondary);
+    border-radius: 6px;
 }
 
 .playground-video,
@@ -1708,6 +1710,13 @@ ul {
     border-radius: 6px;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
     mask-image: radial-gradient(white, black);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.playground-video.loaded,
+.playground-media img.loaded {
+    opacity: 1;
 }
 
 .playground-view {

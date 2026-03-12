@@ -25,7 +25,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2026</span>
                     </div>
                     <div class="playground-media">
-                        <video class="playground-video" muted autoplay loop playsinline src="/video/oak-onboarding.mp4"></video>
+                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/oak-onboarding.mp4"></video>
                     </div>
                     <a href="https://www.oakfocus.co/" target="_blank" rel="noopener noreferrer" class="playground-view">View</a>
                 </div>
@@ -37,7 +37,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2026</span>
                     </div>
                     <div class="playground-media">
-                        <video class="playground-video" muted autoplay loop playsinline src="/video/oak-button-states.mp4"></video>
+                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/oak-button-states.mp4"></video>
                     </div>
                 </div>
             </li>
@@ -48,7 +48,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2026</span>
                     </div>
                     <div class="playground-media">
-                        <video class="playground-video" muted autoplay loop playsinline src="/video/loader.mp4"></video>
+                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/loader.mp4"></video>
                     </div>
                 </div>
             </li>
@@ -59,7 +59,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2026</span>
                     </div>
                     <div class="playground-media">
-                        <video class="playground-video" muted autoplay loop playsinline src="/video/chat-input.mp4"></video>
+                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/chat-input.mp4"></video>
                     </div>
                 </div>
             </li>
@@ -70,7 +70,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2026</span>
                     </div>
                     <div class="playground-media">
-                        <video class="playground-video" muted autoplay loop playsinline src="/video/blender-workflow.mp4"></video>
+                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/blender-workflow.mp4"></video>
                     </div>
                 </div>
             </li>
@@ -81,7 +81,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2025</span>
                     </div>
                     <div class="playground-media">
-                        <img src="/images/playground/button.png" alt="Shadow instead of border prototype">
+                        <img src="/images/playground/button.png" alt="Shadow instead of border prototype" loading="lazy">
                     </div>
                     <a href="/playground/shadow-over-border" class="playground-view">View</a>
                 </div>
@@ -91,53 +91,73 @@ import MainLayout from '../layouts/MainLayout.astro';
 </MainLayout>
 
 <script>
-    function layoutMasonry() {
+    function initPlayground() {
         const grid = document.querySelector('.playground-grid') as HTMLElement;
         if (!grid) return;
-        const items = Array.from(grid.querySelectorAll('.playground-item')) as HTMLElement[];
-        if (!items.length) return;
 
-        const gap = 8;
-        const gridWidth = grid.clientWidth;
-        let cols = 3;
-        if (gridWidth <= 540) cols = 1;
-        else if (gridWidth <= 800) cols = 2;
+        function layoutMasonry() {
+            const items = Array.from(grid.querySelectorAll('.playground-item')) as HTMLElement[];
+            if (!items.length) return;
 
-        const colWidth = (gridWidth - gap * (cols - 1)) / cols;
-        const colHeights = new Array(cols).fill(0);
+            const gap = 8;
+            const gridWidth = grid.clientWidth;
+            let cols = 3;
+            if (gridWidth <= 540) cols = 1;
+            else if (gridWidth <= 800) cols = 2;
 
-        items.forEach(item => {
-            item.style.width = `${colWidth}px`;
-            item.style.position = 'absolute';
+            const colWidth = (gridWidth - gap * (cols - 1)) / cols;
+            const colHeights = new Array(cols).fill(0);
 
-            const shortest = colHeights.indexOf(Math.min(...colHeights));
-            const x = shortest * (colWidth + gap);
-            const y = colHeights[shortest];
+            items.forEach(item => {
+                item.style.width = `${colWidth}px`;
+                item.style.position = 'absolute';
 
-            item.style.left = `${x}px`;
-            item.style.top = `${y}px`;
+                const shortest = colHeights.indexOf(Math.min(...colHeights));
+                const x = shortest * (colWidth + gap);
+                const y = colHeights[shortest];
 
-            colHeights[shortest] += item.offsetHeight + gap;
+                item.style.left = `${x}px`;
+                item.style.top = `${y}px`;
+
+                colHeights[shortest] += item.offsetHeight + gap;
+            });
+
+            grid.style.height = `${Math.max(...colHeights)}px`;
+        }
+
+        layoutMasonry();
+        window.addEventListener('resize', layoutMasonry);
+
+        document.querySelectorAll('.playground-media img, .playground-media video').forEach(el => {
+            const onLoaded = () => {
+                el.classList.add('loaded');
+                layoutMasonry();
+            };
+
+            if (el instanceof HTMLVideoElement) {
+                if (el.readyState >= 2) {
+                    onLoaded();
+                } else {
+                    el.addEventListener('loadeddata', onLoaded);
+                }
+            } else if (el instanceof HTMLImageElement) {
+                if (el.complete && el.naturalHeight > 0) {
+                    onLoaded();
+                } else {
+                    el.addEventListener('load', onLoaded);
+                }
+            }
         });
 
-        grid.style.height = `${Math.max(...colHeights)}px`;
+        document.querySelectorAll('.playground-card-linked').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if ((e.target as HTMLElement).closest('a')) return;
+                const link = card.querySelector('.playground-view') as HTMLElement | null;
+                if (link) link.click();
+            });
+        });
     }
 
-    layoutMasonry();
-    window.addEventListener('resize', layoutMasonry);
-    window.addEventListener('load', layoutMasonry);
-
-    document.querySelectorAll('.playground-media img, .playground-media video').forEach(el => {
-        el.addEventListener('loadeddata', layoutMasonry);
-        el.addEventListener('load', layoutMasonry);
-    });
-
-    document.querySelectorAll('.playground-card-linked').forEach(card => {
-        card.addEventListener('click', (e) => {
-            if ((e.target as HTMLElement).closest('a')) return;
-            const link = card.querySelector('.playground-view') as HTMLElement | null;
-            if (link) link.click();
-        });
-    });
+    document.addEventListener('astro:page-load', initPlayground);
 </script>
 
