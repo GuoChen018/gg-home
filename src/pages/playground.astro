@@ -13,7 +13,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2026</span>
                     </div>
                     <div class="playground-media">
-                        <img src="/images/playground/inset-input.png" alt="Inner Shadow Card prototype">
+                        <img src="/images/playground/inset-input.png" alt="Inner Shadow Card prototype" width="1024" height="548">
                     </div>
                     <a href="/playground/inset-input" class="playground-view">View</a>
                 </div>
@@ -25,7 +25,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2026</span>
                     </div>
                     <div class="playground-media">
-                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/oak-onboarding.mp4"></video>
+                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/oak-onboarding.mp4" width="2712" height="2160"></video>
                     </div>
                     <a href="https://www.oakfocus.co/" target="_blank" rel="noopener noreferrer" class="playground-view">View</a>
                 </div>
@@ -37,7 +37,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2026</span>
                     </div>
                     <div class="playground-media">
-                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/oak-button-states.mp4"></video>
+                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/oak-button-states.mp4" width="3840" height="1724"></video>
                     </div>
                 </div>
             </li>
@@ -48,7 +48,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2026</span>
                     </div>
                     <div class="playground-media">
-                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/loader.mp4"></video>
+                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/loader.mp4" width="3836" height="2160"></video>
                     </div>
                 </div>
             </li>
@@ -59,7 +59,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2026</span>
                     </div>
                     <div class="playground-media">
-                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/chat-input.mp4"></video>
+                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/chat-input.mp4" width="3452" height="2160"></video>
                     </div>
                 </div>
             </li>
@@ -70,7 +70,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2026</span>
                     </div>
                     <div class="playground-media">
-                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/blender-workflow.mp4"></video>
+                        <video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/blender-workflow.mp4" width="3308" height="2160"></video>
                     </div>
                 </div>
             </li>
@@ -81,7 +81,7 @@ import MainLayout from '../layouts/MainLayout.astro';
                         <span class="playground-date">2025</span>
                     </div>
                     <div class="playground-media">
-                        <img src="/images/playground/button.png" alt="Shadow instead of border prototype" loading="lazy">
+                        <img src="/images/playground/button.png" alt="Shadow instead of border prototype" loading="lazy" width="2256" height="632">
                     </div>
                     <a href="/playground/shadow-over-border" class="playground-view">View</a>
                 </div>
@@ -126,6 +126,7 @@ import MainLayout from '../layouts/MainLayout.astro';
         }
 
         layoutMasonry();
+        grid.classList.add('ready');
         window.addEventListener('resize', layoutMasonry);
 
         document.querySelectorAll('.playground-media img, .playground-media video').forEach(el => {
@@ -135,17 +136,11 @@ import MainLayout from '../layouts/MainLayout.astro';
             };
 
             if (el instanceof HTMLVideoElement) {
-                if (el.readyState >= 2) {
-                    onLoaded();
-                } else {
-                    el.addEventListener('loadeddata', onLoaded);
-                }
+                if (el.readyState >= 2) onLoaded();
+                else el.addEventListener('loadeddata', onLoaded, { once: true });
             } else if (el instanceof HTMLImageElement) {
-                if (el.complete && el.naturalHeight > 0) {
-                    onLoaded();
-                } else {
-                    el.addEventListener('load', onLoaded);
-                }
+                if (el.complete && el.naturalHeight > 0) onLoaded();
+                else el.addEventListener('load', onLoaded, { once: true });
             }
         });
 

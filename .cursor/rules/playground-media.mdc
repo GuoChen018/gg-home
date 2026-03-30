@@ -1,0 +1,26 @@
+---
+description: Playground card media must include width/height attributes to prevent layout shift
+globs: src/pages/playground.astro
+alwaysApply: false
+---
+
+# Playground Media Dimensions
+
+When adding or modifying `<img>` or `<video>` elements inside `.playground-media` in the playground page, always include `width` and `height` attributes with the actual pixel dimensions of the media file.
+
+## Why
+
+The masonry grid uses these attributes to reserve the correct space before media loads, preventing layout shift. Without them, cards collapse to 0 height until media loads.
+
+## How
+
+1. Check dimensions: `sips -g pixelWidth -g pixelHeight <file>` for images, `ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 <file>` for videos.
+2. Add the attributes to the element.
+
+```html
+<!-- Images -->
+<img src="/images/playground/example.png" alt="..." width="1024" height="548">
+
+<!-- Videos -->
+<video class="playground-video" muted autoplay loop playsinline preload="metadata" src="/video/example.mp4" width="1920" height="1080"></video>
+```
