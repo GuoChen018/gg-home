@@ -1080,6 +1080,12 @@ ul {
         /* margin-bottom: 1rem; */
     }
 
+    p,
+    li,
+    blockquote {
+        text-wrap: pretty;
+    }
+
     p {
         margin-top: 1rem; 
         margin-bottom: 0;
