@@ -7,20 +7,24 @@ interface Props {
     title: string; 
     description: string;
     thumbnail: string;
+    ogType?: string;
 }
 
 const {
     title = "Guo's Portfolio",
     description = "The digital home I always wanted",
-    thumbnail = "/images/og-img.jpg"
+    thumbnail = "/images/og-img.jpg",
+    ogType = 'website',
 } = Astro.props as Props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://www.guochen.design');
 
 import '../styles/global.css';
 
 ---
 
 <html lang="en">
-	<MainHead {title} {description} {thumbnail}/>
+	<MainHead {title} {description} {thumbnail} canonicalURL={canonicalURL} {ogType} />
     
 	<body>
         <a href="#main" class="skip">Skip to main content</a>

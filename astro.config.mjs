@@ -4,6 +4,7 @@ import astroOGImage from "astro-og-image";
 
 // https://astro.build/config
 export default defineConfig({
+    site: 'https://www.guochen.design',
     integrations: [react()],
     markdown: {
       shikiConfig: {

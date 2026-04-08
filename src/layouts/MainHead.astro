@@ -1,14 +1,14 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-const {title, description, thumbnail} = Astro.props;
-const { frontmatter } = Astro.props;
-
+const { title, description, thumbnail, canonicalURL, ogType = 'website' } = Astro.props;
+const ogImageAbsolute = new URL(thumbnail, canonicalURL).href;
 ---
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL.href} />
     <link
       rel="stylesheet"
       type="text/css"
@@ -30,15 +30,18 @@ const { frontmatter } = Astro.props;
     <link rel="icon" type="image/png" href="/images/favicon.png">
 
     <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:title" content={title}/>
     <meta property="og:description" content={description}/>
-    <meta property="og:image" content={`https://www.guochen.design${thumbnail}`}/>
+    <meta property="og:image" content={ogImageAbsolute} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content={title}/>
     <meta name="twitter:description" content={description}/>
-    <meta name="twitter:image" content={`https://www.guochen.design${thumbnail}`} />
+    <meta name="twitter:image" content={ogImageAbsolute} />
+    <meta name="twitter:image:alt" content={title} />
 
     <ViewTransitions />
 </head>
