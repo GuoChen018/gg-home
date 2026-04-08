@@ -4,9 +4,9 @@ title: 'Building Oak'
 description: "The entire journey of building a Mac productivity app — from idea to 40 paid users"
 date: 'Apr 6, 2026'
 tags: ['design', 'coding', 'product']
-thumbnail: /images/blog/08-building-oak/thumbnail.jpg
-ogImageWidth: 1440
-ogImageHeight: 800
+thumbnail: /images/blog/08-building-oak/og-card.jpg
+ogImageWidth: 1200
+ogImageHeight: 600
 ---
 
 ![Oak](/images/blog/08-building-oak/oak.jpg)
