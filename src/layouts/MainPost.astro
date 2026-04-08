@@ -3,7 +3,7 @@ const { frontmatter } = Astro.props;
 import MainLayout from '../layouts/MainLayout.astro';
 import Newsletter from '../components/Newsletter.astro';
 ---
-<MainLayout title={frontmatter.title} description={frontmatter.description} thumbnail={frontmatter.thumbnail} ogType="article">
+<MainLayout title={frontmatter.title} description={frontmatter.description} thumbnail={frontmatter.thumbnail} ogType="article" ogImageWidth={frontmatter.ogImageWidth} ogImageHeight={frontmatter.ogImageHeight}>
     <main class="blog-post">
         <h1>{frontmatter.title}</h1>
         <!-- <h5>{frontmatter.date}</h5> -->

@@ -5,6 +5,8 @@ description: "The entire journey of building a Mac productivity app — from ide
 date: 'Apr 6, 2026'
 tags: ['design', 'coding', 'product']
 thumbnail: /images/blog/08-building-oak/thumbnail.jpg
+ogImageWidth: 1440
+ogImageHeight: 800
 ---
 
 ![Oak](/images/blog/08-building-oak/oak.jpg)

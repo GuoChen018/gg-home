@@ -1,7 +1,10 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-const { title, description, thumbnail, canonicalURL, ogType = 'website' } = Astro.props;
+const { title, description, thumbnail, canonicalURL, ogType = 'website', ogImageWidth, ogImageHeight } = Astro.props;
 const ogImageAbsolute = new URL(thumbnail, canonicalURL).href;
+const tl = thumbnail.toLowerCase();
+const ogImageType = tl.endsWith('.png') ? 'image/png' : tl.endsWith('.webp') ? 'image/webp' : 'image/jpeg';
+const hasOgImageSize = typeof ogImageWidth === 'number' && typeof ogImageHeight === 'number';
 ---
 
 <head>
@@ -35,6 +38,9 @@ const ogImageAbsolute = new URL(thumbnail, canonicalURL).href;
     <meta property="og:title" content={title}/>
     <meta property="og:description" content={description}/>
     <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:image:type" content={ogImageType} />
+    {hasOgImageSize && <meta property="og:image:width" content={String(ogImageWidth)} />}
+    {hasOgImageSize && <meta property="og:image:height" content={String(ogImageHeight)} />}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
