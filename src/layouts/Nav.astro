@@ -18,7 +18,7 @@
         const links = document.querySelector<HTMLElement>('nav .nav-links');
         const pill = links?.querySelector<HTMLElement>('.hover-pill');
         if (links && pill) {
-            initHoverPill(links, pill, links.querySelectorAll<HTMLElement>('a'));
+            initHoverPill(links, pill, links.querySelectorAll<HTMLElement>('a'), { pressable: true });
         }
     });
 </script>

@@ -473,7 +473,7 @@ pre > code .line {
     background-color: var(--color-background-secondary);
     opacity: 0;
     transition:
-        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        translate 0.28s cubic-bezier(0.22, 1, 0.36, 1),
         width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
         height 0.28s cubic-bezier(0.22, 1, 0.36, 1),
         opacity 0.18s ease-out;
@@ -481,6 +481,23 @@ pre > code .line {
 
 .hover-pill-round {
     border-radius: 999px;
+    scale: 1;
+    transition:
+        translate 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        height 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.18s ease-out,
+        scale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-pill-round.pressed {
+    scale: 0.92;
+    transition:
+        translate 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        height 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.18s ease-out,
+        scale 0.1s ease-out;
 }
 
 .hover-pill.visible {
