@@ -566,6 +566,11 @@ header h3 {
     border: 1px solid red;
 } */
 
+/* Reserve scrollbar space so short pages (e.g. Writing) don't shift horizontally */
+html {
+    scrollbar-gutter: stable;
+}
+
 body {
     margin: 0 auto;
     background-color: var(--color-background-primary);
