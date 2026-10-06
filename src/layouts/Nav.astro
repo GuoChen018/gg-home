@@ -3,9 +3,22 @@
 ---
 
 <nav>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/blog">Writing</a>
-    <a href="/playground">Playground</a>
+    <div class="nav-links">
+        <div class="hover-pill hover-pill-round" aria-hidden="true"></div>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/blog">Writing</a>
+    </div>
 </nav>
 
+<script>
+    import { initHoverPill } from '../scripts/hover-pill';
+
+    document.addEventListener('astro:page-load', () => {
+        const links = document.querySelector<HTMLElement>('nav .nav-links');
+        const pill = links?.querySelector<HTMLElement>('.hover-pill');
+        if (links && pill) {
+            initHoverPill(links, pill, links.querySelectorAll<HTMLElement>('a'));
+        }
+    });
+</script>

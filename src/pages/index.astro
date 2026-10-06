@@ -1,6 +1,7 @@
 ---
 //component imports
 import MainLayout from '../layouts/MainLayout.astro'
+import HanziName from '../components/HanziName.astro'
 ---
 
 <script>
@@ -11,7 +12,7 @@ import MainLayout from '../layouts/MainLayout.astro'
 
   <main id="main">
     <header>
-      <h3>Guo Chen. <span style="color: var(--color-text-secondary); font-weight: var(--font-weight-reg)">Product designer at <a href="https://www.datadoghq.com/" target="_blank">Datadog</a> passionate about solving technical problems and a builder at heart.</span> </h3>
+      <h3><HanziName>Guo Chen.</HanziName> <span style="color: var(--color-text-secondary); font-weight: var(--font-weight-reg)">Product designer at <a href="https://www.datadoghq.com/" target="_blank">Datadog</a> passionate about solving technical problems and a builder at heart.</span> </h3>
     </header>
 
     <!-- Hero SVG illustration -->
@@ -598,21 +599,21 @@ import MainLayout from '../layouts/MainLayout.astro'
             <figure class="column-12">
                 <a href="https://www.oakfocus.co/" target="_blank">
                     <div class="img-all">
-                      <video class="img-all" muted autoplay loop src="/video/oak/oak-hero.mp4?v=2"></video>
+                      <video class="img-all" muted autoplay loop playsinline preload="auto" data-lazy-video width="1920" height="912" poster="/images/oak/oak-hero-poster.jpg" src="/video/oak/oak-hero.mp4?v=3"></video>
                     </div>
                 </a>
             </figure>
             <figure class="column-6">
               <a href="https://www.oakfocus.co/" target="_blank">
                 <div class="oak-grid-video">
-                  <video muted autoplay loop src="/video/oak/oak-onboarding.mp4"></video>
+                  <video muted loop playsinline preload="none" data-lazy-video poster="/images/oak/oak-onboarding-poster.jpg" src="/video/oak/oak-onboarding.mp4?v=2"></video>
                 </div>
               </a>
             </figure>
             <figure class="column-6">
               <a href="https://www.oakfocus.co/" target="_blank">
                 <div class="oak-grid-video">
-                  <video muted autoplay loop src="/video/oak/oak-usage.mp4"></video>
+                  <video muted loop playsinline preload="none" data-lazy-video poster="/images/oak/oak-usage-poster.jpg" src="/video/oak/oak-usage.mp4?v=2"></video>
                 </div>
               </a>
             </figure>
@@ -626,14 +627,14 @@ import MainLayout from '../layouts/MainLayout.astro'
             <figure class="column-6">
               <a href="https://www.oakfocus.co/" target="_blank">
                 <div class="oak-grid-video-wide">
-                  <video muted autoplay loop src="/video/oak/hover-on-center.mp4"></video>
+                  <video muted loop playsinline preload="none" data-lazy-video poster="/images/oak/hover-on-center-poster.jpg" src="/video/oak/hover-on-center.mp4?v=2"></video>
                 </div>
               </a>
             </figure>
             <figure class="column-6">
               <a href="https://www.oakfocus.co/" target="_blank">
                 <div class="oak-grid-video-wide">
-                  <video muted autoplay loop src="/video/oak/oak-focus-pal.mp4"></video>
+                  <video muted loop playsinline preload="none" data-lazy-video poster="/images/oak/oak-focus-pal-poster.jpg" src="/video/oak/oak-focus-pal.mp4?v=2"></video>
                 </div>
               </a>
             </figure>

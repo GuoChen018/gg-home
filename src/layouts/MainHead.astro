@@ -12,22 +12,18 @@ const hasOgImageSize = typeof ogImageWidth === 'number' && typeof ogImageHeight 
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL.href} />
+    <!-- Third-party stylesheets load without blocking first paint (media swap trick) -->
     <link
       rel="stylesheet"
       type="text/css"
       href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css"
+      media="print"
+      onload="this.media='all'"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <link rel="preload" as="font" href="/fonts/PlusJakartaSans-Regular.ttf" type="font/ttf" crossorigin>
-    <link rel="preload" as="font" href="/fonts/PlusJakartaSans-Medium.ttf" type="font/ttf" crossorigin>
-    <link rel="preload" as="font" href="/fonts/PlusJakartaSans-Bold.ttf" type="font/ttf" crossorigin>
     <link rel="preload" as="font" href="/fonts/PlusJakartaSans-SemiBold.ttf" type="font/ttf" crossorigin>
 
     <link rel="icon" type="image/png" href="/images/favicon.png">

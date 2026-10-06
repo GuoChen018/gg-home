@@ -54,6 +54,26 @@ import '../styles/global.css';
                     lastScrollY = window.scrollY;
                 });
             }
+
+            // Only download/decode videos near the viewport; pause them once offscreen
+            document.addEventListener('astro:page-load', () => {
+                const videos = document.querySelectorAll<HTMLVideoElement>('video[data-lazy-video]');
+                if (!videos.length) return;
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(({ target, isIntersecting }) => {
+                        const video = target as HTMLVideoElement;
+                        if (isIntersecting) {
+                            video.play().catch(() => {});
+                        } else {
+                            video.pause();
+                        }
+                    });
+                }, { rootMargin: '300px 0px' });
+
+                videos.forEach((video) => observer.observe(video));
+                document.addEventListener('astro:before-swap', () => observer.disconnect(), { once: true });
+            });
         </script>
 	</body>
 </html>

@@ -2,20 +2,23 @@
 
     /* Font */
 
+    --font-sans: 'PlusJakartaSans', sans-serif;
+    --font-mono: 'JetBrains Mono', 'CommitMono', monospace;
+
     /* h6, caption  */
-    --font-size-small: clamp(0.813rem, 0.063vw + 0.8rem, 0.875rem);
+    --font-size-small: 0.75rem;
 
     /* paragraph  */
-    --font-size-medium: 1rem;
+    --font-size-medium: 0.875rem;
 
     /* h3 */
-    --font-size-large: clamp(1rem, 0.25vw + 1rem, 1.25rem);
+    --font-size-large: clamp(0.9375rem, 0.125vw + 0.9rem, 1.0625rem);
 
     /* h2 */
-    --font-size-xlarge: clamp(1.25rem, 0.5vw + 1.15rem, 1.75rem);
+    --font-size-xlarge: clamp(1.125rem, 0.375vw + 1rem, 1.5rem);
 
     /* h1 */
-    --font-size-xxlarge: clamp(1.5rem, 0.625vw + 1.375rem, 2.125rem);
+    --font-size-xxlarge: clamp(1.375rem, 0.5vw + 1.25rem, 1.875rem);
 
     --font-weight-reg: 400; 
     --font-weight-medium: 500; 
@@ -136,7 +139,7 @@ nav {
     background-color: white;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     transition: transform 0.4s ease-in;
     /* animation: navFade 0.5s ease-in-out forwards; */
 
@@ -355,18 +358,25 @@ i {
     color: var(--color-text-secondary);
 }
 
-nav a {
-    text-decoration: none;
-    border-radius: var(--border-radius-small);
-    padding: 0.5rem 0.75rem; 
-    text-align: center;
-    transition: background-color 0.2s ease-in-out;
-
+.nav-links {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
 }
 
-nav a:hover {
-    
-    background-color: var(--color-background-secondary);
+nav a {
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 0.5rem 0.875rem; 
+    text-align: center;
+    transition: color 0.18s ease-out;
+}
+
+nav a:focus-visible {
+    outline: none;
 }
 
 #project-list, header, .inko-cat, .creator-now, .datadog, .about {
@@ -382,7 +392,7 @@ nav a:hover {
 }
 
 .blog-post, .blog {
-    max-width: 80ch;
+    max-width: 36rem;
     margin: 0 auto;
 }
 
@@ -395,7 +405,7 @@ pre {
     margin-bottom: 1rem;
 	padding: 1rem 1.25rem;
 	border-radius: var(--border-radius-medium);
-    font-family: 'JetBrains Mono', 'CommitMono', monospace;
+    font-family: var(--font-mono);
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-small);
     line-height: var(--lh-large);
@@ -446,8 +456,45 @@ pre > code .line {
     border-radius: var(--border-radius-medium);
     padding: 0.45rem 1rem 0.125rem 1rem;
     margin-left: -1rem;
-    transition: background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
+}
+
+.blog-list-wrap {
+    position: relative;
+}
+
+.hover-pill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: var(--border-radius-medium);
+    background-color: var(--color-background-secondary);
+    opacity: 0;
+    transition:
+        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        height 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.18s ease-out;
+}
+
+.hover-pill-round {
+    border-radius: 999px;
+}
+
+.hover-pill.visible {
+    opacity: 1;
+}
+
+.hover-pill.no-slide {
+    transition: opacity 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hover-pill {
+        transition: opacity 0.18s ease-out;
+    }
 }
 
 .blog-row > * {
@@ -461,14 +508,26 @@ pre > code .line {
     pointer-events: none;
 }
 
+.blog-row {
+    z-index: 1;
+}
+
+/* Static so the ::after overlay stretches over the whole row, not just the title */
 .blog-row > a {
+    position: static;
     line-height: var(--lh-medium);
     text-decoration: none;
     color: var(--color-text-secondary);
+    transition: color 0.18s ease-out;
 }
 
-.blog-row > a:hover {
-    color: var(--color-text-secondary);
+.blog-row:hover > a,
+.blog-row:focus-within > a {
+    color: var(--color-text-primary);
+}
+
+.blog-row > a:focus-visible {
+    outline: none;
 }
 
 .blog-row-link::after {
@@ -479,10 +538,6 @@ pre > code .line {
     left: 0;
     right: 0;
     z-index: 0;
-}
-
-.blog-row:hover {
-    background-color: var(--color-background-secondary);
 }
 
 #project-list .project-list-item {
@@ -504,7 +559,7 @@ pre > code .line {
 header h3 {
     margin: 0 auto;
     text-align: center;
-    width: 70%;
+    max-width: 34rem;
 }
 
 /* * {
@@ -515,6 +570,12 @@ body {
     margin: 0 auto;
     background-color: var(--color-background-primary);
     padding-top: 140px;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-medium);
+}
+
+button, input, textarea, select {
+    font: inherit;
 }
 
 /* body::before {
@@ -543,7 +604,7 @@ body {
 */
 
 body > *:not(nav) {
-    animation: fadeIn 0.75s ease-in;
+    animation: fadeIn 0.35s ease-out;
 }
 
 @keyframes fadeIn {
@@ -789,7 +850,7 @@ svg {
 }
 
 .tag {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-small);
     line-height: var(--lh-xlarge);
@@ -841,7 +902,7 @@ svg {
 
 .tooltip-text {
     margin: 0; 
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-small);
     line-height: var(--lh-xlarge);
@@ -856,7 +917,29 @@ svg {
     animation: scale-up-bottom 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards;
 }
 
-.tooltip:not(.show) {
+/* Mirror of the show animation: shrinks back toward the bottom while fading */
+.tooltip.hiding {
+    visibility: visible;
+    transform-origin: 50% 100%;
+    animation: scale-down-bottom 0.12s cubic-bezier(0.435, 0, 0.61, 0.425) forwards;
+    pointer-events: none;
+    transition: none;
+}
+
+@keyframes scale-down-bottom {
+    from {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+    to {
+        transform: scale(0.8);
+        opacity: 0;
+        filter: blur(4px);
+    }
+}
+
+.tooltip:not(.show):not(.hiding) {
     animation: none !important;
 }
 
@@ -925,7 +1008,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-xxlarge);
     line-height: var(--lh-small);
@@ -934,7 +1017,7 @@ h1 {
 }
 
 h2 {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-xlarge);
     line-height: var(--lh-large);
@@ -944,7 +1027,7 @@ h2 {
 }
 
 h3 {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-large);
     line-height: var(--lh-xlarge);
@@ -953,7 +1036,7 @@ h3 {
 }
 
 h4 {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-medium);
     line-height: var(--lh-xlarge);
@@ -962,7 +1045,7 @@ h4 {
 }
 
 h5 {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-medium);
     line-height: var(--lh-xlarge);
@@ -971,7 +1054,7 @@ h5 {
 }
 
 h6 {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-small);
     line-height: var(--lh-xlarge);
@@ -981,7 +1064,7 @@ h6 {
 }
 
 figcaption {
-    font-family: 'JetBrains Mono', 'CommitMono', monospace;
+    font-family: var(--font-mono);
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-small);
     line-height: var(--lh-xlarge);
@@ -993,7 +1076,7 @@ figcaption {
 
 
 p {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-medium);
     line-height: var(--lh-xlarge);
@@ -1002,7 +1085,7 @@ p {
 }
 
 strong {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-medium);
     line-height: var(--lh-xlarge);
@@ -1010,7 +1093,7 @@ strong {
 }
 
 a {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     color: var(--color-text-secondary);
     text-decoration-thickness: .9px; 
     text-underline-offset: 3px;
@@ -1018,7 +1101,7 @@ a {
 }
 
 .title-a {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     color: var(--color-text-primary);
     text-decoration: none;
     margin: 0 0 0.5rem;
@@ -1106,7 +1189,7 @@ ul {
 
     li {
         margin-top: 0.75em;
-        font-family: 'PlusJakartaSans', sans-serif;
+        font-family: var(--font-sans);
         font-weight: var(--font-weight-reg);
         font-size: var(--font-size-medium);
         line-height: var(--lh-xlarge);
@@ -1114,7 +1197,7 @@ ul {
     }
     
     p > code, li > code {
-        font-family: 'JetBrains Mono', 'CommitMono', monospace;
+        font-family: var(--font-mono);
         font-weight: var(--font-weight-reg);
         font-size: var(--font-size-small);
         padding: 0.25rem 0.25rem;
@@ -1581,9 +1664,6 @@ ul {
         row-gap: 1rem;
     } */
 
-    header h3 {
-        width: 100%;
-    }
 
 
     h2 {
@@ -1633,6 +1713,10 @@ ul {
         height: 100px;
     }
 
+    nav a {
+        padding: 0.5rem 0.5rem;
+    }
+
     .timeline::after {
         left: 10px;
     }
@@ -1643,10 +1727,6 @@ ul {
 
     .container {
         padding-left: 40px;
-    }
-
-    h5 {
-        font-size: 0.875rem;
     }
 }
 
@@ -1704,13 +1784,13 @@ ul {
 }
 
 .playground-name {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-size: var(--font-size-small);
     color: var(--color-text-primary);
 }
 
 .playground-date {
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-small);
     color: var(--color-text-secondary);
@@ -1742,6 +1822,21 @@ ul {
     opacity: 1;
 }
 
+.playground-media-orb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    background-color: var(--color-background-secondary);
+}
+
+.playground-media-orb .playground-video {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 
 .playground-view {
     display: block;
@@ -1750,7 +1845,7 @@ ul {
     margin-bottom: 0;
     text-align: center;
     text-decoration: none;
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-size: var(--font-size-small);
     font-weight: var(--font-weight-reg);
     color: var(--color-text-primary);
@@ -1770,7 +1865,7 @@ ul {
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-size: var(--font-size-small);
     font-weight: var(--font-weight-reg);
     color: var(--color-text-secondary);
@@ -1836,7 +1931,7 @@ ul {
 
 .playground-content li {
     margin-top: 0.75em;
-    font-family: 'PlusJakartaSans', sans-serif;
+    font-family: var(--font-sans);
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-medium);
     line-height: var(--lh-xlarge);
@@ -1845,7 +1940,7 @@ ul {
 
 .playground-content p > code,
 .playground-content li > code {
-    font-family: 'JetBrains Mono', 'CommitMono', monospace;
+    font-family: var(--font-mono);
     font-weight: var(--font-weight-reg);
     font-size: var(--font-size-small);
     padding: 0.25rem 0.25rem;

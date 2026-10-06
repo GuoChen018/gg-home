@@ -12,6 +12,7 @@ document.addEventListener('astro:page-load', () => {
     item.addEventListener('mouseenter', (e) => {
       const tooltipContent = e.target.dataset.tooltipContent;
       tooltip.innerHTML = tooltipContent;
+      tooltip.classList.remove('hiding');
       document.body.appendChild(tooltip);
 
       // STILL NEED TO CHANGE THIS!
@@ -28,12 +29,12 @@ document.addEventListener('astro:page-load', () => {
 
     item.addEventListener('mouseleave', () => {
       tooltip.classList.remove('show');
-      tooltip.style.animation = 'none';
-      setTimeout(() => {
+      tooltip.classList.add('hiding');
+      tooltip.addEventListener('animationend', () => {
         if (!tooltip.classList.contains('show')) {
           tooltip.remove();
         }
-      }, 150);
+      }, { once: true });
     });
   });
 });
