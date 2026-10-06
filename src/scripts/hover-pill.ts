@@ -6,6 +6,9 @@ export function initHoverPill(
   items: Iterable<HTMLElement>,
   { pressable = false } = {},
 ) {
+  const itemList = [...items];
+  let current: HTMLElement | null = null;
+
   const offsetWithin = (el: HTMLElement) => {
     const c = container.getBoundingClientRect();
     const r = el.getBoundingClientRect();
@@ -13,6 +16,7 @@ export function initHoverPill(
   };
 
   const moveTo = (item: HTMLElement) => {
+    current = item;
     const visible = pill.classList.contains('visible');
     const { x, y, w, h } = offsetWithin(item);
     if (!visible) pill.classList.add('no-slide');
@@ -26,23 +30,42 @@ export function initHoverPill(
     }
     pill.classList.add('visible');
   };
-  const hide = () => pill.classList.remove('visible');
+  const hide = () => {
+    current = null;
+    pill.classList.remove('visible', 'pressed');
+  };
 
-  for (const item of items) {
-    item.addEventListener('pointerenter', () => moveTo(item));
-    item.addEventListener('focusin', () => moveTo(item));
-    item.addEventListener('focusout', hide);
-    if (pressable) {
-      item.addEventListener('pointerdown', () => {
-        moveTo(item);
-        pill.classList.add('pressed');
-      });
-    }
-  }
+  const itemFrom = (target: EventTarget | null) =>
+    itemList.find((item) => target instanceof Node && item.contains(target)) ?? null;
+
+  // Follow whatever is under the pointer on every move, so a missed enter event can't leave it stuck
+  container.addEventListener('pointermove', (e) => {
+    const item = itemFrom(e.target);
+    if (item && item !== current) moveTo(item);
+  });
   container.addEventListener('pointerleave', hide);
 
+  // Keyboard focus only; mouse clicks and window refocus shouldn't drag the highlight around
+  container.addEventListener('focusin', (e) => {
+    const item = itemFrom(e.target);
+    if (item && (e.target as HTMLElement).matches(':focus-visible')) moveTo(item);
+  });
+  container.addEventListener('focusout', () => {
+    if (!container.matches(':hover')) hide();
+  });
+
   if (pressable) {
+    container.addEventListener('pointerdown', (e) => {
+      const item = itemFrom(e.target);
+      if (!item) return;
+      moveTo(item);
+      pill.classList.add('pressed');
+    });
     const release = () => pill.classList.remove('pressed');
-    ['pointerup', 'pointercancel', 'pointerleave'].forEach((type) => container.addEventListener(type, release));
+    ['pointerup', 'pointercancel'].forEach((type) => container.addEventListener(type, release));
   }
+
+  // Page swapped in under a stationary cursor: pick up the hovered item right away
+  const hovered = itemList.find((item) => item.matches(':hover'));
+  if (hovered) moveTo(hovered);
 }
