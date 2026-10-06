@@ -50,7 +50,7 @@ const allPosts = await Astro.glob('../pages/blog/*.md');
       const wrap = document.querySelector<HTMLElement>('.blog-list-wrap');
       const pill = wrap?.querySelector<HTMLElement>('.hover-pill');
       if (wrap && pill) {
-        initHoverPill(wrap, pill, wrap.querySelectorAll<HTMLElement>('.blog-row'));
+        initHoverPill(wrap, pill, wrap.querySelectorAll<HTMLElement>('.blog-row'), { pressable: true });
       }
     });
   </script>
