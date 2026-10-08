@@ -2,11 +2,23 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import astroOGImage from "astro-og-image";
 
+function externalLinksInNewTab() {
+    const visit = (node) => {
+        if (node.type === 'element' && node.tagName === 'a' && /^https?:\/\//.test(node.properties?.href ?? '')) {
+            node.properties.target = '_blank';
+            node.properties.rel = ['noopener', 'noreferrer'];
+        }
+        node.children?.forEach(visit);
+    };
+    return visit;
+}
+
 // https://astro.build/config
 export default defineConfig({
     site: 'https://www.guochen.design',
     integrations: [react()],
     markdown: {
+      rehypePlugins: [externalLinksInNewTab],
       shikiConfig: {
         // Choose from Shiki's built-in themes (or add your own)
         // https://shiki.style/themes
