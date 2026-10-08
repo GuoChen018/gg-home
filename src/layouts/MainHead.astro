@@ -11,6 +11,8 @@ const hasOgImageSize = typeof ogImageWidth === 'number' && typeof ogImageHeight 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL.href} />
     <!-- Third-party stylesheets load without blocking first paint (media swap trick) -->
     <link

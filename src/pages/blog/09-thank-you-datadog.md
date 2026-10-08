@@ -4,9 +4,9 @@ title: 'Thank you, Datadog'
 description: "Everything I learned and the memories I'm taking with me after two years as a product designer at Datadog"
 date: 'Oct 8, 2026'
 tags: ['design', 'career', 'datadog']
-thumbnail: /images/blog/09-thank-you-datadog/og-card.jpg
+thumbnail: /images/blog/09-thank-you-datadog/og-card-v2.jpg
 ogImageWidth: 1200
-ogImageHeight: 600
+ogImageHeight: 630
 ---
 
 Two years ago, I joined Datadog as a product designer.
