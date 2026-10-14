@@ -15,7 +15,7 @@ I did not know what to expect. I was placed on a different team than my internsh
 
 ![Collage from my first day at Datadog: me smiling in a gray t-shirt with a backpack, a coworker walking down a bright office hallway, the office cafeteria lunch spread, and a white Datadog mug](/images/blog/09-thank-you-datadog/first-day.jpg)
 
-Fast forward to last Friday, my last day at Datadog. Two years have passed. It’s a strange feeling. I’m sad. Sad that I’ll no longer work with some amazing teammates. But also excited. Excited for this new role and the opportunities to grow. And again, that feeling of the unknown rushing back. The need to restart and to start from ground zero. It’s strange.
+Fast forward to Sep 25, my last day at Datadog. Two years have passed. It’s a strange feeling. I’m sad. Sad that I’ll no longer work with some amazing teammates. But also excited. Excited for this new role and the opportunities to grow. And again, that feeling of the unknown rushing back. The need to restart and to start from ground zero. It’s strange.
 
 A lot happened during my two-year tenure at Datadog. So, before I start my new role, I want to capture everything I’ve learned working at Datadog. And most importantly, the memories made.
 
@@ -287,4 +287,4 @@ As an early designer, I felt incredibly safe and supported by you all. It was su
 
 To end, I want to say: Thank you. I’ve learned so much as a designer, and thank you to everyone I’ve collaborated and chatted with at Datadog.
 
-As for what’s next, I’ll share soon as I’m onboarding onto my new team. In the future, if I have time, I may write another article on how I landed the role (job search is hard), but regardless, it’s time to lock in!
+As for what’s next, this is my second week working as a product designer at [LangChain](https://www.langchain.com/)! The pace is fast, and I’m already working on my first project. In the future, if I have time, I may write another article on how I landed the role (job search is hard), but regardless, it’s time to lock in!

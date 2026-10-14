@@ -38,12 +38,18 @@ export function initHoverPill(
   const itemFrom = (target: EventTarget | null) =>
     itemList.find((item) => target instanceof Node && item.contains(target)) ?? null;
 
-  // Follow whatever is under the pointer on every move, so a missed enter event can't leave it stuck
-  container.addEventListener('pointermove', (e) => {
-    const item = itemFrom(e.target);
-    if (item && item !== current) moveTo(item);
-  });
-  container.addEventListener('pointerleave', hide);
+  // Touch taps leave :hover stuck. Tracking that on a phone shows the pill after
+  // the next page loads, then drops it — the nav flash.
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (finePointer) {
+    // Follow whatever is under the pointer on every move, so a missed enter event can't leave it stuck
+    container.addEventListener('pointermove', (e) => {
+      const item = itemFrom(e.target);
+      if (item && item !== current) moveTo(item);
+    });
+    container.addEventListener('pointerleave', hide);
+  }
 
   // Keyboard focus only; mouse clicks and window refocus shouldn't drag the highlight around
   container.addEventListener('focusin', (e) => {
@@ -61,11 +67,17 @@ export function initHoverPill(
       moveTo(item);
       pill.classList.add('pressed');
     });
-    const release = () => pill.classList.remove('pressed');
+    const release = () => {
+      pill.classList.remove('pressed');
+      if (!finePointer) pill.classList.remove('visible');
+    };
     ['pointerup', 'pointercancel'].forEach((type) => container.addEventListener(type, release));
   }
 
-  // Page swapped in under a stationary cursor: pick up the hovered item right away
-  const hovered = itemList.find((item) => item.matches(':hover'));
-  if (hovered) moveTo(hovered);
+  // Page swapped in under a stationary cursor: pick up the hovered item right away.
+  // Skip on touch — the tapped link still matches :hover and would flash the pill.
+  if (finePointer) {
+    const hovered = itemList.find((item) => item.matches(':hover'));
+    if (hovered) moveTo(hovered);
+  }
 }

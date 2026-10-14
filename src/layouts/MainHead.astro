@@ -48,6 +48,7 @@ const hasOgImageSize = typeof ogImageWidth === 'number' && typeof ogImageHeight 
     <meta property="twitter:image" content={ogImageAbsolute} />
     <meta name="twitter:image:alt" content={title} />
 
-    <ViewTransitions />
+    <!-- swap: browsers without the View Transitions API shouldn't simulate a fade on top of the entrance animation -->
+    <ViewTransitions fallback="swap" />
 </head>
 

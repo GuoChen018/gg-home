@@ -350,8 +350,10 @@ figure img {
     transition: transform 0.3s ease;
 }
 
-figure a:hover img {
-    transform: scale(1.02);
+@media (hover: hover) and (pointer: fine) {
+    figure a:hover img {
+        transform: scale(1.02);
+    }
 }
 
 i {
@@ -629,12 +631,42 @@ body > *:not(nav) {
     animation: fadeIn 0.35s ease-out;
 }
 
+/* Client navigations already reveal the page. Replaying this fade starts the
+   new page at opacity 0 after it has painted, which flashes on mobile. */
+html.astro-navigated body > *:not(nav) {
+    animation: none;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
     }
     100% {
         opacity: 1;
+    }
+}
+
+/* Light pages flash during the default root crossfade (plus-lighter), and on
+   mobile the URL bar changes the snapshot height so the page scales after load. */
+::view-transition-old(root),
+::view-transition-new(root) {
+    mix-blend-mode: normal;
+}
+
+@media screen and (max-width: 800px) {
+    ::view-transition-group(root),
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation-duration: 0s;
+        animation-delay: 0s;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        height: 100%;
+        overflow: clip;
+        object-fit: none;
+        object-position: top left;
     }
 } 
 
