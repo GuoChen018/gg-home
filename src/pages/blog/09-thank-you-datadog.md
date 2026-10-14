@@ -17,7 +17,7 @@ I did not know what to expect. I was placed on a different team than my internsh
 
 Fast forward to Sep 25, my last day at Datadog. Two years have passed. It’s a strange feeling. I’m sad. Sad that I’ll no longer work with some amazing teammates. But also excited. Excited for this new role and the opportunities to grow. And again, that feeling of the unknown rushing back. The need to restart and to start from ground zero. It’s strange.
 
-A lot happened during my two-year tenure at Datadog. So, before I start my new role, I want to capture everything I’ve learned working at Datadog. And most importantly, the memories made.
+A lot happened during my two-year tenure at Datadog. So, I want to capture everything I’ve learned working at Datadog. And most importantly, the memories made.
 
 ## What I learned
 
